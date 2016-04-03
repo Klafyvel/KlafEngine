@@ -3,22 +3,28 @@
 
 #include <iostream>
 #include <vector>
+#include<functional>
 
 #include <SFML/Graphics.hpp>
 
 namespace klf
 {
+  class State;
+  class Component;
   class Application
   {
   public:
     Application(State& firstState);
     ~Application();
 
-    void mainLoop();
-    void event(sf::Event e);
-    void update();
-    void render();
+    void onMainLoop();
+    void onEvent(sf::Event e);
+    void onUpdate();
+    void onRender();
+    void onInit();
+
     void changeState(State& state);
+    void stopRunning();
 
   protected:
 
@@ -32,65 +38,41 @@ namespace klf
 
   };
 
-  class Entity
+  class Component : public sf::Drawable
   {
   public:
-    Entity() = 0;
-    virtual ~Entity() = 0;
+    Component(sf::Vector2f pos);
+    ~Component();
 
   protected:
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates states);
+    sf::Vector2f m_pos;
 
   private:
 
   };
 
-  class System
-  {
-  public:
-    System() = 0;
-    virtual ~System() = 0;
-
-  protected:
-
-  private:
-
-  };
-
-  class Component
-  {
-  public:
-    Component() = 0;
-    virtual ~Component() = 0;
-
-  protected:
-
-  private:
-
-  };
-
-  class State : public System
+  class State
   {
   public:
     State();
-    virtual ~State() = 0;
+    virtual ~State();
 
-    virtual void init(){
-      if(m_cleanup)
-        State::handleCleanup();
+    virtual void onInit();
+    virtual void reInit();
 
-    }
-    virtual void reInit() = 0;
+    virtual void onEvent(sf::Event e);
+    virtual void onRender(sf::RenderTarget& target);
+    virtual void onCleanup();
+    virtual void onUpdate();
 
-    virtual void handleEvents(sf::Event theEvent) = 0;
-    virtual void handleCleanup()
-    {
-
-    }
+    State& nextState();
+    void addNextState(State& state);
+    void setNextState(int index);
 
   protected:
-
-    std::vector <Component> m_components;
-
+    std::vector <std::reference_wrapper<Component>> m_components;
+    std::vector <std::reference_wrapper<State>> m_nexts;
 
   private:
 
