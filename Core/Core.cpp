@@ -28,6 +28,7 @@ namespace klf
   void Application::onInit()
   {
     m_window.create(sf::VideoMode(800, 600), "KlafEngine");
+    m_window.setFramerateLimit(60);
   }
 
   /** @brief Renders the current state.
@@ -108,10 +109,11 @@ namespace klf
   //////////////
   // COMPONENT
   ///////////////////////////////
+
   /** @brief Draws a component.
     *
     */
-  void Component::draw(sf::RenderTarget& target, sf::RenderStates states)
+  void DrawableComponent::draw(sf::RenderTarget& target, sf::RenderStates states)
   {
 
   }
@@ -120,7 +122,7 @@ namespace klf
     *
     * (documentation goes here)
     */
-   Component::~Component()
+   DrawableComponent::~DrawableComponent()
   {
 
   }
@@ -129,11 +131,31 @@ namespace klf
     *
     * (documentation goes here)
     */
-   Component::Component(sf::Vector2f pos):
+   DrawableComponent::DrawableComponent(sf::Vector2f pos):
      m_pos(pos)
   {
 
   }
+
+  /** @brief (one liner)
+    *
+    * (documentation goes here)
+    */
+  void DrawableComponent::onUpdate()
+  {
+
+  }
+
+  /** @brief (one liner)
+    *
+    * (documentation goes here)
+    */
+  void DrawableComponent::onEvent(sf::Event e)
+  {
+
+  }
+
+
 
   //////////////
   // STATE
@@ -189,6 +211,8 @@ namespace klf
     */
   void State::onRender(sf::RenderTarget& target)
   {
+    for(unsigned int i=0; i<m_drawableComponents.size(); i++)
+      target.draw(m_drawableComponents[i].get());
 
   }
 
@@ -198,7 +222,8 @@ namespace klf
     */
   void State::onEvent(sf::Event e)
   {
-
+    for(unsigned int i=0; i<m_drawableComponents.size(); i++)
+      target.draw(m_drawableComponents[i].get());
   }
 
   /** @brief (one liner)
@@ -235,6 +260,26 @@ namespace klf
    State::State()
   {
 
+  }
+
+
+  /** @brief (one liner)
+    *
+    * (documentation goes here)
+    */
+  void State::addComponent(DrawableComponent& component)
+  {
+    m_drawableComponents.push_back(std::reference_wrapper<DrawableComponent>(component));
+    m_components.push_back(std::reference_wrapper<Component>(component));
+  }
+
+  /** @brief (one liner)
+    *
+    * (documentation goes here)
+    */
+  void State::addComponent(Component& component)
+  {
+    m_components.push_back(std::reference_wrapper<Component>(component));
   }
 
 

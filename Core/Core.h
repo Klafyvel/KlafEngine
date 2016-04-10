@@ -38,11 +38,28 @@ namespace klf
 
   };
 
-  class Component : public sf::Drawable
+  class Component
   {
   public:
-    Component(sf::Vector2f pos);
-    ~Component();
+    Component() {}
+    virtual void onUpdate()=0;
+    virtual void onEvent(sf::Event e)=0;
+    virtual bool isDrawable() {return false;}
+
+  protected:
+
+
+  };
+
+  class DrawableComponent : public sf::Drawable, public Component
+  {
+  public:
+    DrawableComponent(sf::Vector2f pos);
+    ~DrawableComponent();
+
+    virtual void onUpdate();
+    virtual void onEvent(sf::Event e);
+    bool isDrawable() {return true;}
 
   protected:
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states);
@@ -70,8 +87,12 @@ namespace klf
     void addNextState(State& state);
     void setNextState(int index);
 
+    void addComponent(Component& component);
+    void addComponent(DrawableComponent& component);
+
   protected:
     std::vector <std::reference_wrapper<Component>> m_components;
+    std::vector <std::reference_wrapper<DrawableComponent>> m_drawableComponents;
     std::vector <std::reference_wrapper<State>> m_nexts;
 
   private:
