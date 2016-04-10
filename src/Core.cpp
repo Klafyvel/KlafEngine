@@ -6,7 +6,7 @@ namespace klf
   // APPLICATION
   ///////////////////////////////
 
-  /** @brief Stops the application's run.
+  /** @brief Stop the application's run.
     * @return void
     */
   void Application::stopRunning()
@@ -14,7 +14,9 @@ namespace klf
     m_isRunning = false;
   }
 
-  /** @brief (one liner)
+  /** @brief Change the application's current state.
+   *
+   *  @param state The new State.
     * @return void
     */
   void Application::changeState(State& state)
@@ -22,7 +24,7 @@ namespace klf
     m_currentState = state;
   }
 
-  /** @brief Initializes the application.
+  /** @brief Initialize the application.
     *
     */
   void Application::onInit()
@@ -31,7 +33,7 @@ namespace klf
     m_window.setFramerateLimit(60);
   }
 
-  /** @brief Renders the current state.
+  /** @brief Render the current state.
     * @return void
     */
   void Application::onRender()
@@ -40,17 +42,18 @@ namespace klf
     m_currentState.onRender(m_window);
   }
 
-  /** @brief (one liner)
+  /** @brief Update the application.
     *
-    * (documentation goes here)
+    * @return void
     */
   void Application::onUpdate()
   {
 
     m_currentState = m_currentState.nextState();
+	m_currentState.onUpdate();
   }
 
-  /** @brief Handles events for the application.
+  /** @brief Handle events for the application.
     *
     * Catch the sf::Event::Closed event or ask the current state what to do.
     */
@@ -62,7 +65,7 @@ namespace klf
       m_currentState.onEvent(e);
   }
 
-  /** @brief Initializes the application then handles the application's main loop.
+  /** @brief Initialize the application then handle the application's main loop.
     *
     */
   void Application::onMainLoop()
@@ -110,26 +113,26 @@ namespace klf
   // COMPONENT
   ///////////////////////////////
 
-  /** @brief Draws a component.
+  /** @brief Draw a component.
     *
+	* @return void
     */
   void DrawableComponent::draw(sf::RenderTarget& target, sf::RenderStates states)
   {
 
   }
 
-  /** @brief (one liner)
+  /** @brief DrawableComponent's destructor.
     *
-    * (documentation goes here)
     */
    DrawableComponent::~DrawableComponent()
   {
 
   }
 
-  /** @brief (one liner)
+  /** @brief DrawableComponent's constructor.
     *
-    * (documentation goes here)
+    * @param pos The component's position.
     */
    DrawableComponent::DrawableComponent(sf::Vector2f pos):
      m_pos(pos)
@@ -137,18 +140,19 @@ namespace klf
 
   }
 
-  /** @brief (one liner)
+  /** @brief Update a DrawableComponent.
     *
-    * (documentation goes here)
+	* @return void
     */
   void DrawableComponent::onUpdate()
   {
 
   }
 
-  /** @brief (one liner)
+  /** @brief Handle an event.
     *
-    * (documentation goes here)
+	* @param e The event which is to be handled.
+	* @return void
     */
   void DrawableComponent::onEvent(sf::Event e)
   {
@@ -160,127 +164,128 @@ namespace klf
   //////////////
   // STATE
   ///////////////////////////////
-  /** @brief (one liner)
+  /** @brief Change a state's next state.
     *
-    * (documentation goes here)
+    * @param index Index of the next state.
+	* @return void
     */
-  void State::setNextState(int index)
-  {
+	void State::setNextState(int index)
+	{
+		m_nextState = index;
+	}
 
-  }
+	/** @brief Add a possible next state to a state.
+	*
+	* @param state A refence to the next state.
+	* @return void
+	*/
+	void State::addNextState(State& state)
+	{
+		m_nexts.push_back(std::reference_wrapper<State>(state));
+	}
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::addNextState(State& state)
-  {
+	/** @brief Give the next state of a state.
+	*
+	* @return The next state.
+	*/
+	State& State::nextState()
+	{
+		return m_nexts[m_nextState].get();
+	}
 
-  }
+	/** @brief Update a state.
+	* This will also update every owned component.
+	* @return void
+	*/
+	void State::onUpdate()
+	{
+		for(unsigned int i=0; i < m_components.size(); i++)
+			m_components[i].get().onUpdate();
+	}
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  State& State::nextState()
-  {
-    return (*this);
-  }
+	/** @brief Clean up a State.
+	* This will remove every component.
+	* @return void
+	*/
+	void State::onCleanup()
+	{
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::onUpdate()
-  {
+	}
 
-  }
+	/** @brief Render a state on the given target.
+	*
+	* @param target The target on which the state is to be rendered.
+	* @return void
+	*/
+	void State::onRender(sf::RenderTarget& target)
+	{
+	for(unsigned int i=0; i<m_drawableComponents.size(); i++)
+		target.draw(m_drawableComponents[i].get());
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::onCleanup()
-  {
+	}
 
-  }
+	/** @brief Handle the given sf::Event.
+	*
+	* @param e The event which is to be handled.
+	* @return void
+	*/
+	void State::onEvent(sf::Event e)
+	{
+	for(unsigned int i=0; i < m_components.size(); i++)
+		m_components[i].get().onEvent(e);
+	}
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::onRender(sf::RenderTarget& target)
-  {
-    for(unsigned int i=0; i<m_drawableComponents.size(); i++)
-      target.draw(m_drawableComponents[i].get());
+	/** @brief Re-initialize a state.
+	*
+	* @return void
+	*/
+	void State::reInit()
+	{
+		State::onCleanup();
+		State::onInit();
+	}
 
-  }
+	/** @brief Init a State.
+	*
+	* @return void
+	*/
+	void State::onInit()
+	{
+		m_nextState = 0;
+		m_nexts.push_back(std::reference_wrapper<State>(*this));
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::onEvent(sf::Event e)
-  {
-    for(unsigned int i=0; i<m_drawableComponents.size(); i++)
-      target.draw(m_drawableComponents[i].get());
-  }
+	}
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::reInit()
-  {
+	/** @brief State destructor.
+	*/
+	State::~State()
+	{}
 
-  }
+	/** @brief State constructor.
+	* This will not initialize the state. You need to call State::onInit().
+	*/
+	State::State()
+	{
+	}
 
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::onInit()
-  {
+	/** @brief Add a drawable component to a state.
+	*
+	* @param component
+	* @return void
+	*/
+	void State::addComponent(DrawableComponent& component)
+	{
+		m_drawableComponents.push_back(std::reference_wrapper<DrawableComponent>(component));
+		m_components.push_back(std::reference_wrapper<Component>(component));
+	}
 
-  }
-
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-   State::~State()
-  {
-
-  }
-
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-   State::State()
-  {
-
-  }
-
-
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::addComponent(DrawableComponent& component)
-  {
-    m_drawableComponents.push_back(std::reference_wrapper<DrawableComponent>(component));
-    m_components.push_back(std::reference_wrapper<Component>(component));
-  }
-
-  /** @brief (one liner)
-    *
-    * (documentation goes here)
-    */
-  void State::addComponent(Component& component)
-  {
-    m_components.push_back(std::reference_wrapper<Component>(component));
-  }
-
-
+	/** @brief Add a component to the state.
+	*
+	* @param component
+	* @return void
+	*/
+	void State::addComponent(Component& component)
+	{
+		m_components.push_back(std::reference_wrapper<Component>(component));
+	}
 }

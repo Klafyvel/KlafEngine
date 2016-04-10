@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include<functional>
+#include <functional>
 
 #include <SFML/Graphics.hpp>
 
@@ -69,36 +69,38 @@ namespace klf
 
   };
 
-  class State
-  {
-  public:
-    State();
-    virtual ~State();
+	class State
+	{
+	public:
+		State();
+		virtual ~State();
 
-    virtual void onInit();
-    virtual void reInit();
+		virtual void onInit();
+		virtual void reInit();
 
-    virtual void onEvent(sf::Event e);
-    virtual void onRender(sf::RenderTarget& target);
-    virtual void onCleanup();
-    virtual void onUpdate();
+		virtual void onEvent(sf::Event e);
+		virtual void onRender(sf::RenderTarget& target);
+		virtual void onCleanup();
+		virtual void onUpdate();
 
-    State& nextState();
-    void addNextState(State& state);
-    void setNextState(int index);
+		State& nextState();
+		void addNextState(State& state);
+		void setNextState(int index);
 
-    void addComponent(Component& component);
-    void addComponent(DrawableComponent& component);
+		void addComponent(Component& component);
+		void addComponent(DrawableComponent& component);
 
-  protected:
-    std::vector <std::reference_wrapper<Component>> m_components;
-    std::vector <std::reference_wrapper<DrawableComponent>> m_drawableComponents;
-    std::vector <std::reference_wrapper<State>> m_nexts;
+	protected:
+		std::vector <std::reference_wrapper<Component> > m_components;
+		std::vector <std::reference_wrapper<DrawableComponent> > m_drawableComponents;
+		std::vector <std::reference_wrapper<State> > m_nexts;
 
-  private:
+		int m_nextState;
+
+	private:
 
 
-  };
+	};
 }
 
 #endif // H_KLAFCORE
