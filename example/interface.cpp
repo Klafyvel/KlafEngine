@@ -1,6 +1,6 @@
 #include <iostream>
-#include <KlafEngine/Core.h>
-#include <KlafEngine/Interface.h>
+#include <KlafEngine/Core.hpp>
+#include <KlafEngine/Interface.hpp>
 
 int main()
 {
