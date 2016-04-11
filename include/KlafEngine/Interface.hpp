@@ -2,6 +2,7 @@
 #define H_KLAFINTERFACE
 
 #include <iostream>
+#include <algorithm> // std::max
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -10,6 +11,7 @@
 
 namespace klf
 {
+	bool pointInRect(sf::Vector2f p, sf::IntRect rect);
   template <class T>
   class Widget : public DrawableComponent
   {
@@ -38,6 +40,10 @@ namespace klf
   public:
     Button(sf::IntRect rect, sf::String text, sf::Color bg=sf::Color(0,0,0,0), sf::Color textColor=sf::Color(255,255,255,255));
 
+	/** @brief Set the Button's value.
+	 * @param value The new value.
+	 * @return void
+	 */
     void setValue(bool value) {m_value = value;}
     bool getValue() {return m_value;}
 
