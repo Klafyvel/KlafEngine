@@ -6,6 +6,7 @@ int main()
 {
   klf::Button bp(sf::IntRect(1,1,100,60), "Hello World", sf::Color(200,200,200), sf::Color(200,200,200));
   klf::State st;
+  st.onInit();
 
   st.addComponent(bp);
 
