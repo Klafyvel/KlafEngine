@@ -1,40 +1,89 @@
 #ifndef H_KLAFCORE
 #define H_KLAFCORE
 
+/**
+ * @file Core.hpp
+ * @brief KlafEngine's core.
+ * @author klafyvel
+ */
+
 #include <iostream>
 #include <vector>
 #include <functional>
 
 #include <SFML/Graphics.hpp>
 
+/**
+ * @namespace klf
+ *
+ * Namespace for the KlafEngine's components.
+ */
 namespace klf
 {
-  class State;
-  class Component;
-  class Application
-  {
-  public:
-    Application(State& firstState);
-    ~Application();
+	class State;
+	class Component;
+	/** @class Application
+	* @brief Handles an application.
+	*/
+	class Application
+	{
+	public:
+		/** @brief Application's constructor.
+		* @param firstState The application's first state.
+		*/
+		Application(State& firstState);
 
-    void onMainLoop();
-    void onEvent(sf::Event e);
-    void onUpdate();
-    void onRender();
-    void onInit();
+		/** @brief Application's destructor.
+		*
+		*/
+		Application::~Application();
 
-    void changeState(State& state);
-    void stopRunning();
+		/** @brief Initialize the application then handle the application's main loop.
+		*
+		*/
+		void onMainLoop();
 
-  protected:
+		/** @brief Handle events for the application.
+		*
+		* Catch the sf::Event::Closed event or ask the current state what to do.
+		*/
+		void onEvent(sf::Event e);
 
-  private:
-    sf::Clock m_clock;
-    sf::RenderWindow m_window;
+		/** @brief Update the application.
+		*
+		* @return void
+		*/
+		void onUpdate();
 
-    bool m_isRunning;
+		/** @brief Render the current state.
+		* @return void
+		*/
+		void onRender();
 
-    State& m_currentState;
+		/** @brief Initialize the application.
+		*
+		*/
+		void onInit();
+
+		/** @brief Change the application's current state.
+		*
+		*  @param state The new State.
+		* @return void
+		*/
+		void changeState(State& state);
+
+		/** @brief Stop the application's run.
+		* @return void
+		*/
+		void stopRunning();
+
+	protected:
+		sf::Clock m_clock; /**Application's internal clock.*/
+		sf::RenderWindow m_window; /**Application's window.*/
+
+		bool m_isRunning; /**Application's run state.*/
+
+		State& m_currentState; /**Application's current state.*/
 
   };
 

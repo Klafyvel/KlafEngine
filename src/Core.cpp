@@ -2,112 +2,80 @@
 
 namespace klf
 {
-  //////////////
-  // APPLICATION
-  ///////////////////////////////
+	//////////////
+	// APPLICATION
+	///////////////////////////////
 
-  /** @brief Stop the application's run.
-    * @return void
-    */
-  void Application::stopRunning()
-  {
-    m_isRunning = false;
-  }
+	void Application::stopRunning()
+	{
+		m_isRunning = false;
+	}
 
-  /** @brief Change the application's current state.
-   *
-   *  @param state The new State.
-    * @return void
-    */
-  void Application::changeState(State& state)
-  {
-    m_currentState = state;
-  }
+	void Application::changeState(State& state)
+	{
+		m_currentState = state;
+	}
 
-  /** @brief Initialize the application.
-    *
-    */
-  void Application::onInit()
-  {
-    m_window.create(sf::VideoMode(800, 600), "KlafEngine");
-    m_window.setFramerateLimit(60);
-  }
+	void Application::onInit()
+	{
+		m_window.create(sf::VideoMode(800, 600), "KlafEngine");
+		m_window.setFramerateLimit(60);
+	}
 
-  /** @brief Render the current state.
-    * @return void
-    */
-  void Application::onRender()
-  {
-    m_window.clear();
-    m_currentState.onRender(m_window);
-  }
+	void Application::onRender()
+	{
+		m_window.clear();
+		m_currentState.onRender(m_window);
+	}
 
-  /** @brief Update the application.
-    *
-    * @return void
-    */
-  void Application::onUpdate()
-  {
+	void Application::onUpdate()
+	{
+		m_currentState = m_currentState.nextState();
+		m_currentState.onUpdate();
+	}
 
-    m_currentState = m_currentState.nextState();
-	m_currentState.onUpdate();
-  }
+	void Application::onEvent(sf::Event e)
+	{
+		if(e.type == sf::Event::Closed)
+			m_isRunning = false;
+		else
+			m_currentState.onEvent(e);
+	}
 
-  /** @brief Handle events for the application.
-    *
-    * Catch the sf::Event::Closed event or ask the current state what to do.
-    */
-  void Application::onEvent(sf::Event e)
-  {
-    if(e.type == sf::Event::Closed)
-      m_isRunning = false;
-    else
-      m_currentState.onEvent(e);
-  }
+	void Application::onMainLoop()
+	{
+		Application::onInit();
 
-  /** @brief Initialize the application then handle the application's main loop.
-    *
-    */
-  void Application::onMainLoop()
-  {
-    Application::onInit();
+		m_isRunning = true;
+		m_clock.restart();
+		sf::Event event;
 
-    m_isRunning = true;
-    m_clock.restart();
-    sf::Event event;
+		while(m_isRunning && m_window.isOpen())
+		{
+			// Handles events
+			while(m_window.pollEvent(event))
+				Application::onEvent(event);
 
-    while(m_isRunning && m_window.isOpen())
-    {
-      // Handles events
-      while(m_window.pollEvent(event))
-        Application::onEvent(event);
+			Application::onUpdate();
 
-      Application::onUpdate();
+			Application::onRender();
 
-      Application::onRender();
+			m_window.display();
+		}
+	}
 
-      m_window.display();
-    }
-  }
+	Application::~Application()
+	{
+		m_window.close();
+	}
 
-  /** @brief Application's destructor.
-    *
-    */
-   Application::~Application()
-  {
-    m_window.close();
-  }
-
-  /** @brief Application's constructor.
-    *
-    */
-   Application::Application(State& firstState):
-     m_clock(),
-     m_window(),
-     m_isRunning(false),
-     m_currentState(firstState)
-  {
-  }
+	Application::Application(State& firstState):
+		m_clock(),
+		m_window(),
+		m_isRunning(false),
+		m_currentState(firstState)
+	{
+	}
 
   //////////////
   // COMPONENT
