@@ -85,70 +85,111 @@ namespace klf
 
 		State& m_currentState; /**Application's current state.*/
 
-  };
+	};
 
-  class Component
-  {
-  public:
-    Component() {}
-    virtual void onUpdate()=0;
-    virtual void onEvent(sf::Event e)=0;
-    virtual bool isDrawable() {return false;}
+	/** @class Component
+	 * @brief A state component.
+	 */
+	class Component
+	{
+	public:
+		/** @brief Default constructor.
+		 */
+		Component() {}
 
-  protected:
+		/** @brief Called in order to update the component.
+		 */
+		virtual void onUpdate()=0;
 
+		/** @brief Handle event.
+		 * @param e The event which is to be handled.
+		 */
+		virtual void onEvent(sf::Event e)=0;
+	};
 
-  };
-
-  class DrawableComponent : public sf::Drawable, public Component
-  {
-  public:
-    DrawableComponent(sf::Vector2f pos);
-    ~DrawableComponent();
-
-    virtual void onUpdate();
-    virtual void onEvent(sf::Event e);
-    bool isDrawable() {return true;}
-
-  protected:
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states);
-    sf::Vector2f m_pos;
-
-  private:
-
-  };
-
+	/** @class State
+	 * @brief An application state.
+	 */
 	class State
 	{
 	public:
+		/** @brief State constructor.
+		* This will not initialize the state. You need to call State::onInit().
+		*/
 		State();
+
+		/** @brief Virtual destructor.
+		 */
 		virtual ~State();
 
+		/** @brief Init a State.
+		*/
 		virtual void onInit();
+
+		/** @brief Re-initialize a state.
+		* Call State::onCleanup then State::onInit().
+		*/
 		virtual void reInit();
 
+		/** @brief Handle the given sf::Event.
+		*
+		* @param e The event which is to be handled.
+		* @return void
+		*/
 		virtual void onEvent(sf::Event e);
+
+		/** @brief Render a state on the given target.
+		*
+		* @param target The target on which the state is to be rendered.
+		* @return void
+		*/
 		virtual void onRender(sf::RenderTarget& target);
+
+		/** @brief Clean up a State.
+		* This will remove every component.
+		* @return void
+		*/
 		virtual void onCleanup();
+
+		/** @brief Update a state.
+		* This will also update every owned component.
+		* @return void
+		*/
 		virtual void onUpdate();
 
+		/** @brief Give the next state of a state.
+		*
+		* @return The next state.
+		*/
 		State& nextState();
+
+		/** @brief Add a possible next state to a state.
+		*
+		* @param state A refence to the next state.
+		* @return void
+		*/
 		void addNextState(State& state);
+
+		/** @brief Change a state's next state.
+		*
+		* @param index Index of the next state.
+		* @return void
+		*/
 		void setNextState(int index);
 
-		void addComponent(Component& component);
-		void addComponent(DrawableComponent& component);
+		/** @brief Add a component to the state.
+		*
+		* @param component The component which is to be added.
+		* @param drawable Has the component to be rendered ?
+		*/
+		void addComponent(Component& component, bool drawable=false);
 
 	protected:
-		std::vector <std::reference_wrapper<Component> > m_components;
-		std::vector <std::reference_wrapper<DrawableComponent> > m_drawableComponents;
-		std::vector <std::reference_wrapper<State> > m_nexts;
+		std::vector <std::reference_wrapper<Component> > m_components; /** State's components. */
+		std::vector <std::reference_wrapper<Component> > m_drawableComponents; /** State's drawable components.*/
+		std::vector <std::reference_wrapper<State> > m_nexts; /** The possible next states.*/
 
-		int m_nextState;
-
-	private:
-
-
+		int m_nextState; /** The actual next state (0=self)*/
 	};
 }
 
