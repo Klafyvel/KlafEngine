@@ -36,7 +36,7 @@ namespace klf
 		/** @brief Application's destructor.
 		*
 		*/
-		Application::~Application();
+		~Application();
 
 		/** @brief Initialize the application then handle the application's main loop.
 		*
