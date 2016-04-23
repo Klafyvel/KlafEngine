@@ -71,6 +71,8 @@ namespace klf {
 	const std::bitset<MASK_SIZE> ACT_2			(1<<(5+CHARACTER_FIRST_BIT);
 	const std::bitset<MASK_SIZE> ACT_3			(1<<(6+CHARACTER_FIRST_BIT);
 	const std::bitset<MASK_SIZE> CHARACTER		(1<<(7+CHARACTER_FIRST_BIT);
+
+	const int FIRST_FREE_BIT = 1+7+CHARACTER_FIRST_BIT;
 }
 
 #endif // H_KLFCOMPONENTSMASK
