@@ -26,6 +26,8 @@ namespace klf
 {
 	class Component
 	{
+	public:
+		Component();
 	};
 
 	class Application;
@@ -34,7 +36,7 @@ namespace klf
 	public:
 		System(Application &application) : m_application(application){}
 	protected:
-		void changeComponent(ComponentsMask mask, int entity);
+		Component& getComponent(ComponentMask mask, int entity);
 
 		Application& m_application;
 
@@ -44,23 +46,26 @@ namespace klf
 	{
 	friend class System;
 	public:
-		Application(sf::RenderWindow &window) : window(window) {}
+		Application(sf::RenderWindow &window) : m_window(window) {}
 
 		void addSystem(System system, int id);
 		void removeSystem(int id);
 
 		int addEntity();
-		void addMask(int entityId, ComponentsMask mask);
-		void removeMask(int entityId, ComponentsMask mask);
+		void addMask(int entityId, ComponentMask mask);
+		void removeMask(int entityId, ComponentMask mask);
 		void removeEntity(int id);
 
-		void addComponentType(ComponentsMask mask);
-		void removeComponentType(ComponentsMask mask);
+		void addComponentType(ComponentMask mask);
+		void removeComponentType(ComponentMask mask);
 
 	protected:
+		sf::RenderWindow& m_window;
 		std::unordered_map<int, System> m_systems;
 		std::unordered_map<int, std::unordered_map<int,Component>> m_components;
 		std::unordered_map<int, int> m_entities;
+	};
 
 
 }
+#endif // H_KLAFCORE
