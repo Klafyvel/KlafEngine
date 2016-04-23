@@ -18,6 +18,8 @@ namespace klf {
 	/** The component's mask size. */
 	const size_t MASK_SIZE = 50;
 
+	typedef std::bitset<MASK_SIZE> ComponentMask;
+
 	/** Render Components */
 
 	const int COMPONENTS_FIRST_BIT = 0;
