@@ -21,9 +21,9 @@ namespace klf {
 
 	typedef std::bitset<MASK_SIZE> ComponentMask;
 
-	int componentMaskToInt(ComponentMask mask)
+	unsigned int componentMaskToInt(ComponentMask mask)
 	{
-		return (int)log2(mask.to_ulong());
+		return (unsigned int)log2(mask.to_ulong());
 	}
 
 	/** Render Components */
