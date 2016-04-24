@@ -1,4 +1,4 @@
-#include <KlafEngine/Core2.hpp>
+#include <KlafEngine/Core.hpp>
 
 namespace klf
 {
