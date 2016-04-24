@@ -12,6 +12,8 @@
 #include <string>
 #include <unordered_map>
 #include <bitset>
+#include <queue>
+#include <functional>
 
 #include <SFML/Graphics.hpp>
 
@@ -24,22 +26,32 @@
  */
 namespace klf
 {
+	class Application;
+	class System;
+
 	class Component
 	{
 	public:
 		Component();
-	};
+		static Component createEmptyComponent(unsigned int entity)
+		{
+			Component c = Component();
+			c.entity = entity;
+			return c;
+		}
 
-	class Application;
+		unsigned int entity;
+	};
+	typedef std::function<Component(unsigned int)> EmptyComponentFactory;
+
 	class System
 	{
 	public:
 		System(Application &application) : m_application(application){}
 	protected:
-		Component& getComponent(ComponentMask mask, int entity);
+		Component& getComponent(const ComponentMask mask, const unsigned int entity);
 
 		Application& m_application;
-
 	};
 
 	class Application
@@ -48,22 +60,28 @@ namespace klf
 	public:
 		Application(sf::RenderWindow &window) : m_window(window) {}
 
-		void addSystem(System system, int id);
-		void removeSystem(int id);
+		unsigned int addSystem(System system);
+		void removeSystem(unsigned int id);
 
-		int addEntity();
-		void addMask(int entityId, ComponentMask mask);
-		void removeMask(int entityId, ComponentMask mask);
-		void removeEntity(int id);
+		unsigned int addEntity();
+		void addMask(const unsigned int entityId, const ComponentMask mask);
+		void removeMask(const unsigned int entityId, const ComponentMask mask);
+		void removeEntity(const unsigned int id);
 
-		void addComponentType(ComponentMask mask);
-		void removeComponentType(ComponentMask mask);
+		void registerComponentType(const ComponentMask mask, EmptyComponentFactory factory);
+		void removeComponentType(const ComponentMask mask);
+
+		void addComponentRow(const ComponentMask mask);
+		void removeComponentRow(const ComponentMask mask);
 
 	protected:
 		sf::RenderWindow& m_window;
-		std::unordered_map<int, System> m_systems;
-		std::unordered_map<int, std::unordered_map<int,Component>> m_components;
-		std::unordered_map<int, int> m_entities;
+		std::unordered_map<unsigned int, System> m_systems;
+		std::unordered_map<unsigned int, std::unordered_map<unsigned int,Component>> m_components;
+		std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents;
+		std::unordered_map<unsigned int, ComponentMask> m_entities;
+		std::queue<unsigned int> m_freeSystemId;
+		std::queue<unsigned int> m_freeEntityId;
 	};
 
 
