@@ -68,7 +68,8 @@ namespace klf
 	void Application::removeMask(const unsigned int entityId, const ComponentMask mask)
 	{
 		m_entities[entityId] &= ~mask;
-		/* Todo : remove the component from m_components */
+		unsigned int componentId = componentMaskToInt(mask);
+		m_components[componentId].erase(entityId);
 	}
 
 	void Application::removeEntity(const unsigned int id)
