@@ -75,6 +75,13 @@ namespace klf
 	void Application::removeEntity(const unsigned int id)
 	{
 		m_entities.erase(id);
+		m_freeEntityId.push(id);
+	}
+
+	void Application::registerComponentType(const ComponentMask mask, EmptyComponentFactory factory)
+	{
+		unsigned int componentId = componentMaskToInt(mask);
+		m_registeredComponents[componentId] = factory;
 	}
 
 	/*
