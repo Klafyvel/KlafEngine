@@ -91,6 +91,11 @@ namespace klf
 		m_registeredComponents.erase(componentId);
 	}
 
+	void Application::addComponentRow(const ComponentMask mask)
+	{
+		unsigned int componentId = componentMaskToInt(mask);
+		m_components[componentId] = std::unordered_map<unsigned int, Component> ();
+	}
 	/*
 	void Application::addComponentType(const ComponentMask mask)
 	{
