@@ -70,17 +70,15 @@ namespace klf
 		void removeMask(const unsigned int entityId, const ComponentMask mask);
 		void removeEntity(const unsigned int id);
 
-		/*
 		void registerComponentType(const ComponentMask mask, EmptyComponentFactory factory);
 		void removeComponentType(const ComponentMask mask);
-*/
 		void addComponentRow(const ComponentMask mask);
 		void removeComponentRow(const ComponentMask mask);
 	protected:
 		sf::RenderWindow& m_window;
 		std::unordered_map<unsigned int, System> m_systems;
 		std::unordered_map<unsigned int, std::unordered_map<unsigned int,std::unique_ptr<Component>>> m_components;
-		std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents;
+	std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents;
 		std::unordered_map<unsigned int, ComponentMask> m_entities;
 		std::queue<unsigned int> m_freeSystemId;
 		std::queue<unsigned int> m_freeEntityId;

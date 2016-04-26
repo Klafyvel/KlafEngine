@@ -78,7 +78,6 @@ namespace klf
 		m_freeEntityId.push(id);
 	}
 
-	/*
 	void Application::registerComponentType(const ComponentMask mask, EmptyComponentFactory factory)
 	{
 		unsigned int componentId = componentMaskToInt(mask);
@@ -95,9 +94,8 @@ namespace klf
 	void Application::addComponentRow(const ComponentMask mask)
 	{
 		unsigned int componentId = componentMaskToInt(mask);
-		m_components[componentId] = std::unordered_map<unsigned int, Component> ();
+		m_components[componentId] = std::unordered_map<unsigned int, std::unique_ptr<Component>> ();
 	}
-	*/
 
 	void Application::removeComponentRow(const ComponentMask mask)
 	{
