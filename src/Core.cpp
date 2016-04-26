@@ -84,6 +84,13 @@ namespace klf
 		m_registeredComponents[componentId] = factory;
 	}
 
+	void Application::removeComponentType(const ComponentMask mask)
+	{
+		Application::removeComponentRow(mask);
+		unsigned int componentId = componentMaskToInt(mask);
+		m_registeredComponents.erase(componentId);
+	}
+
 	/*
 	void Application::addComponentType(const ComponentMask mask)
 	{
