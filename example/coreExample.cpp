@@ -5,24 +5,19 @@
 
 #include <KlafEngine/Core.hpp>
 
-
-class MyComponent : public klf::Component
+class MyCompData : public klf::ComponentData
 {
-	public:
-		MyComponent(unsigned int entity, int x, int y) : Component(entity) {
-			int_values["x"] = x;
-			int_values["y"] = y;
-		}
-		static std::unique_ptr<MyComponent> createEmptyMyComponent(unsigned int e)
-		{
-			std::cout << "Creating an empty MyComponent for entity " << e << "." << std::endl;
-			std::unique_ptr<MyComponent> c(new MyComponent(e, 0,0));
-			return c;
-		}
+public:
+	MyCompData() : x(0), y(0) {}
+	int x;
+	int y;
 };
-std::unique_ptr<MyComponent> factory(unsigned int e)
+
+std::unique_ptr<klf::Component> factory(unsigned int e)
 {
-	return MyComponent::createEmptyMyComponent(e);
+	std::unique_ptr<klf::Component> c = klf::Component::createEmptyComponent(e);
+	c->value = std::shared_ptr<klf::ComponentData>(new MyCompData());
+	return c;
 }
 
 class range {
@@ -57,23 +52,25 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(800, 600), "KlafEngine");
 	klf::Application app(window);
 
-	app.registerComponentType(0, MyComponent::createEmptyMyComponent);
+	app.registerComponentType(0, factory);
 
+	std::cout << "Let's create 100 entites with our MyCompData as component." << std::endl;
 	for(auto i : range(0,100))
 	{
-		std::cout << "Create entity " << i << "." << std::endl;
 		unsigned int entity = app.addEntity();
 		app.addMask(entity, 0);
 	}
+	std::cout << "Done." << std::endl;
+	std::cout << "Let's remove entites 40 to 59 ." << std::endl;
 	for(auto i : range(40,60))
 	{
-		std::cout << "Removing entity " << i << "." << std::endl;
 		app.removeEntity(i);
 	}
+	std::cout << "Done." << std::endl;
+	std::cout << "Let's create 60 entites with our MyCompData as component." << std::endl;
 	for(auto i : range(0,60))
 	{
 		unsigned int e = app.addEntity();
-		std::cout << "Creating entity " << e << "." << std::endl;
 		app.addMask(e, 0);
 	}
 

@@ -30,6 +30,19 @@ namespace klf
 	class Application;
 	class System;
 
+	/** @class ComponentData
+	 * @brief Base class for component data.
+	 */
+	class ComponentData
+	{
+	public:
+		/** @brief Constructor */
+		ComponentData() {}
+
+		/** @brief Virtual destructor. */
+		virtual ~ComponentData() {};
+	};
+
 	/** @class Component
 	 * @brief A component has to store datas.
 	 */
@@ -39,21 +52,20 @@ namespace klf
 		/** @brief Constructor.
 		 * @param e The entity which own the component.
 		 */
-		Component(unsigned int e) : entity(e){}
+		Component(unsigned int e) : entity(e)
+		{}
 
 		/** @brief Dynamically allow a Component for the given entity.
 		 * @param entity The entity which own the component.
 		 */
 		static std::unique_ptr<Component> createEmptyComponent(unsigned int entity)
 		{
-			std::unique_ptr<Component> c(new Component(entity));
-			return c;
+			std::unique_ptr<Component> comp(new Component(entity));
+			return comp;
 		}
 
 		unsigned int entity; /** The component's owner.*/
-		std::unordered_map<std::string, int> int_values; /** Every int value stored in the component. */
-		std::unordered_map<std::string, std::string> string_values; /** Every std::string value stored in the component. */
-		std::unordered_map<std::string, float> float_values; /** Every float value stored in the component. */
+		std::shared_ptr<ComponentData> value; /** Use value to store your data struct. */
 	};
 
 	/** @brief Typedef for component factories.
