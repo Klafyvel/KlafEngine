@@ -9,9 +9,16 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <unordered_map>
+#include <bitset>
+#include <queue>
 #include <functional>
+#include <memory>
 
 #include <SFML/Graphics.hpp>
+
+#include <KlafEngine/ComponentsMask.hpp>
 
 /**
  * @namespace klf
@@ -20,177 +27,102 @@
  */
 namespace klf
 {
-	class State;
-	class Component;
-	/** @class Application
-	* @brief Handles an application.
-	*/
-	class Application
+	class Application;
+	class System;
+
+	/** @class ComponentData
+	 * @brief Base class for component data.
+	 */
+	class ComponentData
 	{
 	public:
-		/** @brief Application's constructor.
-		* @param firstState The application's first state.
-		*/
-		Application(State& firstState);
+		/** @brief Constructor */
+		ComponentData() {}
 
-		/** @brief Application's destructor.
-		*
-		*/
-		~Application();
-
-		/** @brief Initialize the application then handle the application's main loop.
-		*
-		*/
-		void onMainLoop();
-
-		/** @brief Handle events for the application.
-		*
-		* Catch the sf::Event::Closed event or ask the current state what to do.
-		*/
-		void onEvent(sf::Event e);
-
-		/** @brief Update the application.
-		*
-		* @return void
-		*/
-		void onUpdate();
-
-		/** @brief Render the current state.
-		* @return void
-		*/
-		void onRender();
-
-		/** @brief Initialize the application.
-		*
-		*/
-		void onInit();
-
-		/** @brief Change the application's current state.
-		*
-		*  @param state The new State.
-		* @return void
-		*/
-		void changeState(State& state);
-
-		/** @brief Stop the application's run.
-		* @return void
-		*/
-		void stopRunning();
-
-	protected:
-		sf::Clock m_clock; /**Application's internal clock.*/
-		sf::RenderWindow m_window; /**Application's window.*/
-
-		bool m_isRunning; /**Application's run state.*/
-
-		State& m_currentState; /**Application's current state.*/
-
+		/** @brief Virtual destructor. */
+		virtual ~ComponentData() {};
 	};
 
 	/** @class Component
-	 * @brief A state component.
+	 * @brief A component has to store datas.
 	 */
 	class Component
 	{
 	public:
-		/** @brief Default constructor.
+		/** @brief Constructor.
+		 * @param e The entity which own the component.
 		 */
-		Component() {}
+		Component(unsigned int e) : entity(e)
+		{}
 
-		/** @brief Called in order to update the component.
+		/** @brief Dynamically allow a Component for the given entity.
+		 * @param entity The entity which own the component.
 		 */
-		virtual void onUpdate()=0;
+		static std::unique_ptr<Component> createEmptyComponent(unsigned int entity)
+		{
+			std::unique_ptr<Component> comp(new Component(entity));
+			return comp;
+		}
 
-		/** @brief Handle event.
-		 * @param e The event which is to be handled.
-		 */
-		virtual void onEvent(sf::Event e)=0;
+		unsigned int entity; /** The component's owner.*/
+		std::shared_ptr<ComponentData> value; /** Use value to store your data struct. */
 	};
 
-	/** @class State
-	 * @brief An application state.
+	/** @brief Typedef for component factories.
 	 */
-	class State
+	typedef std::function<std::unique_ptr<Component>(unsigned int)> EmptyComponentFactory;
+
+	/** @class System
+	 * @brief Deal with Component's values.
+	 */
+	class System
 	{
 	public:
-		/** @brief State constructor.
-		* This will not initialize the state. You need to call State::onInit().
-		*/
-		State();
-
-		/** @brief Virtual destructor.
+		/** @brief Constructor.
+		 * @param application A reference to the system owner.
 		 */
-		virtual ~State();
-
-		/** @brief Init a State.
-		*/
-		virtual void onInit();
-
-		/** @brief Re-initialize a state.
-		* Call State::onCleanup then State::onInit().
-		*/
-		virtual void reInit();
-
-		/** @brief Handle the given sf::Event.
-		*
-		* @param e The event which is to be handled.
-		* @return void
-		*/
-		virtual void onEvent(sf::Event e);
-
-		/** @brief Render a state on the given target.
-		*
-		* @param target The target on which the state is to be rendered.
-		* @return void
-		*/
-		virtual void onRender(sf::RenderTarget& target);
-
-		/** @brief Clean up a State.
-		* This will remove every component.
-		* @return void
-		*/
-		virtual void onCleanup();
-
-		/** @brief Update a state.
-		* This will also update every owned component.
-		* @return void
-		*/
-		virtual void onUpdate();
-
-		/** @brief Give the next state of a state.
-		*
-		* @return The next state.
-		*/
-		State& nextState();
-
-		/** @brief Add a possible next state to a state.
-		*
-		* @param state A refence to the next state.
-		* @return void
-		*/
-		void addNextState(State& state);
-
-		/** @brief Change a state's next state.
-		*
-		* @param index Index of the next state.
-		* @return void
-		*/
-		void setNextState(int index);
-
-		/** @brief Add a component to the state.
-		*
-		* @param component The component which is to be added.
-		* @param drawable Has the component to be rendered ?
-		*/
-		void addComponent(Component& component, bool drawable=false);
-
+		System(Application &application) : m_application(application){}
 	protected:
-		std::vector <std::reference_wrapper<Component> > m_components; /** State's components. */
-		std::vector <std::reference_wrapper<Component> > m_drawableComponents; /** State's drawable components.*/
-		std::vector <std::reference_wrapper<State> > m_nexts; /** The possible next states.*/
+		/** @brief Access to the entity's component. May not be overrided
+		 * @param mask The component's mask.
+		 * @param entity The entity.
+		 */
+		Component& getComponent(const ComponentMask mask, const unsigned int entity);
 
-		int m_nextState; /** The actual next state (0=self)*/
+		Application& m_application;/** System owner.*/
 	};
-}
 
+	/** @class Application
+	 * @brief Handle every system, components and entities.
+	 */
+	class Application
+	{
+	friend class System;
+	public:
+		Application(sf::RenderWindow &window) : m_window(window) {}
+
+		unsigned int addSystem(System system);
+		void removeSystem(unsigned int id);
+
+		unsigned int addEntity();
+		void addMask(const unsigned int entityId, const ComponentMask mask);
+		void removeMask(const unsigned int entityId, const ComponentMask mask);
+		void removeEntity(const unsigned int id);
+
+		void registerComponentType(const ComponentMask mask, EmptyComponentFactory factory);
+		void removeComponentType(const ComponentMask mask);
+		void addComponentRow(const ComponentMask mask);
+		void removeComponentRow(const ComponentMask mask);
+	protected:
+		sf::RenderWindow& m_window;
+		std::unordered_map<unsigned int, System> m_systems;
+		std::unordered_map<unsigned int, std::unordered_map<unsigned int,std::unique_ptr<Component>>> m_components;
+	std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents;
+		std::unordered_map<unsigned int, ComponentMask> m_entities;
+		std::queue<unsigned int> m_freeSystemId;
+		std::queue<unsigned int> m_freeEntityId;
+	};
+
+
+}
 #endif // H_KLAFCORE

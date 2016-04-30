@@ -2,147 +2,107 @@
 
 namespace klf
 {
-	//////////////
-	// APPLICATION
-	///////////////////////////////
-
-	void Application::stopRunning()
+	Component& System::getComponent(const ComponentMask mask, const unsigned int entity)
 	{
-		m_isRunning = false;
+		unsigned int component_id = componentMaskToInt(mask);
+		return *(m_application.m_components[component_id][entity]);
 	}
 
-	void Application::changeState(State& state)
+	void Application::removeSystem(unsigned int id)
 	{
-		m_currentState = state;
+		m_systems.erase(id);
+		m_freeSystemId.push(id);
 	}
 
-	void Application::onInit()
+	unsigned int Application::addSystem(System system)
 	{
-		m_window.create(sf::VideoMode(800, 600), "KlafEngine");
-		m_window.setFramerateLimit(60);
-	}
-
-	void Application::onRender()
-	{
-		m_window.clear();
-		m_currentState.onRender(m_window);
-	}
-
-	void Application::onUpdate()
-	{
-		m_currentState = m_currentState.nextState();
-		m_currentState.onUpdate();
-	}
-
-	void Application::onEvent(sf::Event e)
-	{
-		if(e.type == sf::Event::Closed)
-			m_isRunning = false;
-		else
-			m_currentState.onEvent(e);
-	}
-
-	void Application::onMainLoop()
-	{
-		Application::onInit();
-
-		m_isRunning = true;
-		m_clock.restart();
-		sf::Event event;
-
-		while(m_isRunning && m_window.isOpen())
+		unsigned int i = 0;
+		if (m_freeSystemId.empty())
 		{
-			// Handles events
-			while(m_window.pollEvent(event))
-				Application::onEvent(event);
-
-			Application::onUpdate();
-
-			Application::onRender();
-
-			m_window.display();
+			i = m_systems.size();
+			while(m_systems.find(i) != m_systems.end())
+			{
+				i += 1;
+			}
 		}
+		else
+		{
+			i = m_freeSystemId.front();
+			m_freeSystemId.pop();
+		}
+		m_systems.emplace(i, system);
+		return i;
 	}
 
-	Application::~Application()
+	unsigned int Application::addEntity()
 	{
-		m_window.close();
+		unsigned int i = 0;
+		if (m_freeEntityId.empty())
+		{
+			i = m_entities.size();
+			while(m_entities.find(i) != m_entities.end())
+			{
+				i += 1;
+			}
+		}
+		else
+		{
+			i = m_freeEntityId.front();
+			m_freeEntityId.pop();
+		}
+		m_entities.emplace(i, ComponentMask());
+		return i;
 	}
 
-	Application::Application(State& firstState):
-		m_clock(),
-		m_window(),
-		m_isRunning(false),
-		m_currentState(firstState)
+	void Application::addMask(const unsigned int entityId, const ComponentMask mask)
 	{
+		m_entities[entityId] |= mask;
+		unsigned int componentId = componentMaskToInt(mask);
+		if(m_components.find(componentId) == m_components.end())
+		{
+			Application::addComponentRow(mask);
+		}
+		m_components[componentId][entityId] = m_registeredComponents[componentId](entityId);
 	}
 
-  //////////////
-  // STATE
-  ///////////////////////////////
-	void State::setNextState(int index)
+	void Application::removeMask(const unsigned int entityId, const ComponentMask mask)
 	{
-		m_nextState = index;
+		m_entities[entityId] &= ~mask;
+		unsigned int componentId = componentMaskToInt(mask);
+		m_components[componentId].erase(entityId);
 	}
 
-	void State::addNextState(State& state)
+	void Application::removeEntity(const unsigned int id)
 	{
-		m_nexts.push_back(std::reference_wrapper<State>(state));
+		m_entities.erase(id);
+		m_freeEntityId.push(id);
 	}
 
-	State& State::nextState()
+	void Application::registerComponentType(const ComponentMask mask, EmptyComponentFactory factory)
 	{
-		return m_nexts[m_nextState].get();
+		unsigned int componentId = componentMaskToInt(mask);
+		m_registeredComponents[componentId] = factory;
 	}
 
-	void State::onUpdate()
+	void Application::removeComponentType(const ComponentMask mask)
 	{
-		for(unsigned int i=0; i < m_components.size(); i++)
-			m_components[i].get().onUpdate();
+		Application::removeComponentRow(mask);
+		unsigned int componentId = componentMaskToInt(mask);
+		m_registeredComponents.erase(componentId);
 	}
 
-	void State::onCleanup()
+	void Application::addComponentRow(const ComponentMask mask)
 	{
-
+		unsigned int componentId = componentMaskToInt(mask);
+		m_components[componentId] = std::unordered_map<unsigned int, std::unique_ptr<Component>> ();
 	}
 
-	void State::onRender(sf::RenderTarget& target)
+	void Application::removeComponentRow(const ComponentMask mask)
 	{
-	for(unsigned int i=0; i<m_drawableComponents.size(); i++)
-		target.draw(m_drawableComponents[i].get());
-
+		unsigned int componentId = componentMaskToInt(mask);
+		m_components[componentId].clear();
+		m_components.erase(componentId);
 	}
 
-	void State::onEvent(sf::Event e)
-	{
-	for(unsigned int i=0; i < m_components.size(); i++)
-		m_components[i].get().onEvent(e);
-	}
 
-	void State::reInit()
-	{
-		State::onCleanup();
-		State::onInit();
-	}
-
-	void State::onInit()
-	{
-		m_nextState = 0;
-		m_nexts.push_back(std::reference_wrapper<State>(*this));
-
-	}
-
-	State::~State()
-	{}
-
-	State::State()
-	{
-	}
-
-	void State::addComponent(Component& component, bool drawable)
-	{
-		if(drawable)
-			m_drawableComponents.push_back(std::reference_wrapper<Component>(component));
-		m_components.push_back(std::reference_wrapper<Component>(component));
-	}
 }
