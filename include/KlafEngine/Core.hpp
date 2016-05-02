@@ -57,6 +57,7 @@ namespace klf
 
 		/** @brief Dynamically allow a Component for the given entity.
 		 * @param entity The entity which own the component.
+		 * @return A std::unique_ptr on the component.
 		 */
 		static std::unique_ptr<Component> createEmptyComponent(unsigned int entity)
 		{
@@ -89,8 +90,16 @@ namespace klf
 		 */
 		Component& getComponent(const ComponentMask mask, const unsigned int entity);
 
+		/** @brief Update the system.
+		 */
+		virtual void onUpdate() = 0;
+
 		Application& m_application;/** System owner.*/
 	};
+
+	/** @brief Typedef for system factories.
+	 */
+	typedef std::function<std::unique_ptr<System>(void)> SystemFactory;
 
 	/** @class Application
 	 * @brief Handle every system, components and entities.
@@ -99,28 +108,63 @@ namespace klf
 	{
 	friend class System;
 	public:
-		Application(sf::RenderWindow &window) : m_window(window) {}
+		/** @brief Constructor
+		 */
+		Application() : {}
 
-		unsigned int addSystem(System system);
+		/** @brief Add a system to the application
+		 * @param systemFactory A SystemFactory to build the system.
+		 * @return The system id.
+		 */
+		unsigned int addSystem(SystemFactory systemFactory);
+		/** @brief Remove a system from the application by id.
+		 * @param id System id.
+		 */
 		void removeSystem(unsigned int id);
 
+		/** @brief Add an entity to the system.
+		 * @return The entity id.
+		 */
 		unsigned int addEntity();
+		/** @brief Add a mask on the given entity.
+		 * @param entityId The entity id.
+		 * @param mask The mask which is to be applied.
+		 */
 		void addMask(const unsigned int entityId, const ComponentMask mask);
+		/** @brief Remove the mask on the given entity.
+		 * @param entityId The entity id.
+		 * @param mask The mask which is to be applied.
+		 */
 		void removeMask(const unsigned int entityId, const ComponentMask mask);
+		/** @brief Remove the entity from the application.
+		 * @param id The entity which is to be removed.
+		 */
 		void removeEntity(const unsigned int id);
 
+		/** @brief Register a component type.
+		 * @param mask The mask of the new component.
+		 * @param factory The component factory.
+		 */
 		void registerComponentType(const ComponentMask mask, EmptyComponentFactory factory);
+		/** @brief Remove a component type.
+		 * @param mask The mask of the component which is to be removed.
+		 */
 		void removeComponentType(const ComponentMask mask);
+		/** @brief Add a component row from the application.
+		 * @param mask The component mask to be added.
+		 */
 		void addComponentRow(const ComponentMask mask);
+		/** @brief Remove the component row of the mask.
+		 * @param mask The component mask.
+		 */
 		void removeComponentRow(const ComponentMask mask);
 	protected:
-		sf::RenderWindow& m_window;
-		std::unordered_map<unsigned int, System> m_systems;
-		std::unordered_map<unsigned int, std::unordered_map<unsigned int,std::unique_ptr<Component>>> m_components;
-	std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents;
-		std::unordered_map<unsigned int, ComponentMask> m_entities;
-		std::queue<unsigned int> m_freeSystemId;
-		std::queue<unsigned int> m_freeEntityId;
+		std::unordered_map<unsigned int, System> m_systems; /** Every system of the application.*/
+		std::unordered_map<unsigned int, std::unordered_map<unsigned int,std::unique_ptr<Component>>> m_components; /** Every component rows.*/
+	std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents; /** Registered component (i.e. the factories to build them) */
+		std::unordered_map<unsigned int, ComponentMask> m_entities; /** Every application's entity. */
+		std::queue<unsigned int> m_freeSystemId; /** Free systems ids. */
+		std::queue<unsigned int> m_freeEntityId; /** Free entities id. */
 	};
 
 
