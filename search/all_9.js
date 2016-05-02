@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['restitution',['restitution',['../classklf_1_1_material.html#a93373fc1c7189b11febc34abe673f056',1,'klf::Material']]]
+  ['physics_5ffirst_5fbit',['PHYSICS_FIRST_BIT',['../namespaceklf.html#a68adbcde667f0886d194928b37d08925',1,'klf']]],
+  ['physicutils_2ehpp',['PhysicUtils.hpp',['../_physic_utils_8hpp.html',1,'']]]
 ];

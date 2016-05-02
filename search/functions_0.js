@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['component',['Component',['../classklf_1_1_component.html#a054c4478bb06443b0fb472e3ff58d6e7',1,'klf::Component']]],
-  ['componentdata',['ComponentData',['../classklf_1_1_component_data.html#a01b731f3d06e09a77a7e90523bc8a5fc',1,'klf::ComponentData']]],
-  ['createemptycomponent',['createEmptyComponent',['../classklf_1_1_component.html#a942b876d43bf55c61395593c6e6cc8d7',1,'klf::Component']]]
+  ['addcomponentrow',['addComponentRow',['../classklf_1_1_application.html#a0f3f33da0f35ad90455c685a2da2f256',1,'klf::Application']]],
+  ['addentity',['addEntity',['../classklf_1_1_application.html#aa43bff307ccd8a0ec891803ca7004e2d',1,'klf::Application']]],
+  ['addmask',['addMask',['../classklf_1_1_application.html#a271e072d22352024266bf77767b2c363',1,'klf::Application']]],
+  ['addsystem',['addSystem',['../classklf_1_1_application.html#ac631dc712c0951fbcb6b83ff78a7bb23',1,'klf::Application']]],
+  ['application',['Application',['../classklf_1_1_application.html#af7dfaee69598f264b5e99d333edd8c92',1,'klf::Application']]]
 ];

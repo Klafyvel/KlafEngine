@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['massdata',['MassData',['../classklf_1_1_mass_data.html#a78c01a671d28215911664ed8e36fed04',1,'klf::MassData::MassData(float mass=0, float inertia=0)'],['../classklf_1_1_mass_data.html#a6573f94d5c585bdb3370ff744ab72e03',1,'klf::MassData::MassData()']]],
-  ['material',['Material',['../classklf_1_1_material.html#aca3855da201253294531800a59b10095',1,'klf::Material']]]
+  ['getcomponent',['getComponent',['../classklf_1_1_system.html#a98e43489226afa872f9466529c0d5889',1,'klf::System']]],
+  ['getinertia',['getInertia',['../classklf_1_1_mass_data.html#aef32b503a1297e41ff799e3c98bc8d2f',1,'klf::MassData']]],
+  ['getinverseinertia',['getInverseInertia',['../classklf_1_1_mass_data.html#a687c4cefd7b113a471ebc5f9e3c749fa',1,'klf::MassData']]],
+  ['getinversemass',['getInverseMass',['../classklf_1_1_mass_data.html#aea90e62e79e820c236043ae11e7ae943',1,'klf::MassData']]],
+  ['getmass',['getMass',['../classklf_1_1_mass_data.html#a2f467c7591de0e9599c4acbd0fde21d0',1,'klf::MassData']]]
 ];
