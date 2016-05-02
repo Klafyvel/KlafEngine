@@ -1,5 +1,10 @@
 #include <KlafEngine/Core.hpp>
 
+/**
+ * @file Core.cpp
+ * @brief KlafEngine's core.
+ * @author klafyvel
+ */
 namespace klf
 {
 	Component& System::getComponent(const ComponentMask mask, const unsigned int entity)
@@ -14,7 +19,7 @@ namespace klf
 		m_freeSystemId.push(id);
 	}
 
-	unsigned int Application::addSystem(System system)
+	unsigned int Application::addSystem(SystemFactory systemFactory)
 	{
 		unsigned int i = 0;
 		if (m_freeSystemId.empty())
@@ -30,7 +35,8 @@ namespace klf
 			i = m_freeSystemId.front();
 			m_freeSystemId.pop();
 		}
-		m_systems.emplace(i, system);
+
+		m_systems.emplace(i, systemFactory());
 		return i;
 	}
 

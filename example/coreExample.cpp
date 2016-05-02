@@ -20,6 +20,20 @@ std::unique_ptr<klf::Component> factory(unsigned int e)
 	return c;
 }
 
+class MySystem : public klf::System
+{
+public:
+	MySystem(klf::Application& app) : klf::System(app) {}
+	void onUpdate()
+	{
+		std::cout << "Update ! " << std::endl;
+		klf::Component& c = getComponent(0, 0);
+		std::shared_ptr<MyCompData> d = std::dynamic_pointer_cast<MyCompData>(c.value);
+		std::cout << "Entity : " << c.entity << " " << d->x << " " << d->y << std::endl;
+		d->x += 20;
+	}
+};
+
 class range {
  public:
    class iterator {
@@ -50,7 +64,7 @@ private:
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "KlafEngine");
-	klf::Application app(window);
+	klf::Application app;
 
 	app.registerComponentType(0, factory);
 
@@ -75,6 +89,11 @@ int main()
 	}
 
 
+	std::cout << "Let's create a system and update it !" << std::endl;
+
+	MySystem s(app);
+	s.onUpdate();
+	s.onUpdate();
 
 	return EXIT_SUCCESS;
 }

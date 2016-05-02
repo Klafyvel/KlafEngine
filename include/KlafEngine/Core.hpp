@@ -83,6 +83,7 @@ namespace klf
 		 * @param application A reference to the system owner.
 		 */
 		System(Application &application) : m_application(application){}
+		virtual void onUpdate() = 0;
 	protected:
 		/** @brief Access to the entity's component. May not be overrided
 		 * @param mask The component's mask.
@@ -92,7 +93,6 @@ namespace klf
 
 		/** @brief Update the system.
 		 */
-		virtual void onUpdate() = 0;
 
 		Application& m_application;/** System owner.*/
 	};
@@ -110,7 +110,7 @@ namespace klf
 	public:
 		/** @brief Constructor
 		 */
-		Application() : {}
+		Application()  {}
 
 		/** @brief Add a system to the application
 		 * @param systemFactory A SystemFactory to build the system.
@@ -159,7 +159,7 @@ namespace klf
 		 */
 		void removeComponentRow(const ComponentMask mask);
 	protected:
-		std::unordered_map<unsigned int, System> m_systems; /** Every system of the application.*/
+		std::unordered_map<unsigned int, std::unique_ptr<System>> m_systems; /** Every system of the application.*/
 		std::unordered_map<unsigned int, std::unordered_map<unsigned int,std::unique_ptr<Component>>> m_components; /** Every component rows.*/
 	std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents; /** Registered component (i.e. the factories to build them) */
 		std::unordered_map<unsigned int, ComponentMask> m_entities; /** Every application's entity. */
