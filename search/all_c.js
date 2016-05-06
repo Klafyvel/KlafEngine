@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value',['value',['../classklf_1_1_component.html#a6428c726a09706b30a27dd571b32153b',1,'klf::Component']]]
+  ['_7ecomponentdata',['~ComponentData',['../classklf_1_1_component_data.html#a7d6c988af1ab5b82df071773da492e47',1,'klf::ComponentData']]]
 ];
