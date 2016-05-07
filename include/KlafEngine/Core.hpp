@@ -90,6 +90,9 @@ namespace klf
 		 * @param entity The entity.
 		 */
 		Component& getComponent(const ComponentMask mask, const unsigned int entity);
+		/** @brief Access to the active entities.
+		 */
+		std::unordered_map<unsigned int, ComponentMask>& getActiveEntities();
 
 		Application& m_application;/** System owner.*/
 	};

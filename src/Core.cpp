@@ -12,6 +12,10 @@ namespace klf
 		unsigned int component_id = componentMaskToInt(mask);
 		return *(m_application.m_components[component_id][entity]);
 	}
+	std::unordered_map<unsigned int, ComponentMask>& System::getActiveEntities()
+	{
+		return m_application.m_activeEntities;
+	}
 
 	void Application::removeSystem(unsigned int id)
 	{
