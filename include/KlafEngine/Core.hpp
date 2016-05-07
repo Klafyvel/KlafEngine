@@ -91,9 +91,6 @@ namespace klf
 		 */
 		Component& getComponent(const ComponentMask mask, const unsigned int entity);
 
-		/** @brief Update the system.
-		 */
-
 		Application& m_application;/** System owner.*/
 	};
 
@@ -126,12 +123,20 @@ namespace klf
 		 * @return The entity id.
 		 */
 		unsigned int addEntity();
+		/** @brief Make an entity active.
+		 */
+		void makeActive(unsigned int entity);
+		/** @brief Make an entity unactive.
+		 */
+		void makeUnactive(unsigned int entity);
 		/** @brief Add a mask on the given entity.
+		 * The entity must be active.
 		 * @param entityId The entity id.
 		 * @param mask The mask which is to be applied.
 		 */
 		void addMask(const unsigned int entityId, const ComponentMask mask);
 		/** @brief Remove the mask on the given entity.
+		 * The entity must be active.
 		 * @param entityId The entity id.
 		 * @param mask The mask which is to be applied.
 		 */
@@ -158,11 +163,14 @@ namespace klf
 		 * @param mask The component mask.
 		 */
 		void removeComponentRow(const ComponentMask mask);
+
+
 	protected:
 		std::unordered_map<unsigned int, std::unique_ptr<System>> m_systems; /** Every system of the application.*/
 		std::unordered_map<unsigned int, std::unordered_map<unsigned int,std::unique_ptr<Component>>> m_components; /** Every component rows.*/
-	std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents; /** Registered component (i.e. the factories to build them) */
+		std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents; /** Registered component (i.e. the factories to build them) */
 		std::unordered_map<unsigned int, ComponentMask> m_entities; /** Every application's entity. */
+		std::unordered_map<unsigned int, ComponentMask> m_activeEntities; /** Every active application's entity. */
 		std::queue<unsigned int> m_freeSystemId; /** Free systems ids. */
 		std::queue<unsigned int> m_freeEntityId; /** Free entities id. */
 	};

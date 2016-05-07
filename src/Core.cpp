@@ -60,9 +60,20 @@ namespace klf
 		return i;
 	}
 
+	void Application::makeActive(unsigned int entity)
+	{
+		m_activeEntities[entity] = m_entities[entity];
+	}
+
+	void Application::makeUnactive(unsigned int entity)
+	{
+		m_entities[entity] = m_activeEntities[entity];
+		m_activeEntities.erase(entity);
+	}
+
 	void Application::addMask(const unsigned int entityId, const ComponentMask mask)
 	{
-		m_entities[entityId] |= mask;
+		m_activeEntities[entityId] |= mask;
 		unsigned int componentId = componentMaskToInt(mask);
 		if(m_components.find(componentId) == m_components.end())
 		{
@@ -73,13 +84,14 @@ namespace klf
 
 	void Application::removeMask(const unsigned int entityId, const ComponentMask mask)
 	{
-		m_entities[entityId] &= ~mask;
+		m_activeEntities[entityId] &= ~mask;
 		unsigned int componentId = componentMaskToInt(mask);
 		m_components[componentId].erase(entityId);
 	}
 
 	void Application::removeEntity(const unsigned int id)
 	{
+		makeUnactive(id);
 		m_entities.erase(id);
 		m_freeEntityId.push(id);
 	}
