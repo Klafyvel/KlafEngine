@@ -13,7 +13,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <KlafEngine/Core.hpp>
-#include <KlafEngine/ComponentMask.hpp>
+#include <KlafEngine/ComponentsMask.hpp>
 #include <KlafEngine/Shape.hpp>
 
 
@@ -31,20 +31,9 @@ namespace klf
 	public:
 		Renderer(Application& app): System(app) {}
 
-		void render(sf::RenderTarget& target)
-		{
-			std::unordered_map<unsigned int, ComponentMask>& entities = getActiveEntities();
-			for(auto entity : entities)
-			{
-				if(entities.second&SHAPE)
-				{
-					Component& c = getComponent(SHAPE, entity.first);
-					std::shared_ptr<Shape> s = std::dynamic_pointer_cast<Shape>(c.value);
-					target.draw(s);
-				}
-			}
-		}
+		void render(sf::RenderTarget& target);
 	};
+}
 
 
 #endif // H_KLFRENDERER
