@@ -86,7 +86,6 @@ namespace klf
 		 * @param application A reference to the system owner.
 		 */
 		System(Application &application) : m_application(application){}
-		virtual void onUpdate() = 0;
 	protected:
 		/** @brief Access to the entity's component. May not be overrided
 		 * @param mask The component's mask.
