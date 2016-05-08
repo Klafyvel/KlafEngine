@@ -27,6 +27,9 @@
  */
 namespace klf
 {
+	/**@brief Unsigned int is a very long word !*/
+	typedef unsigned int Entity;
+
 	class Application;
 	class System;
 
