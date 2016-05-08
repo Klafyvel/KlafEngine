@@ -21,28 +21,24 @@ namespace klf {
 
 	typedef std::bitset<MASK_SIZE> ComponentMask;
 
-	unsigned int componentMaskToInt(ComponentMask mask)
-	{
-		return (unsigned int)log2(mask.to_ulong());
-	}
+	unsigned int componentMaskToInt(ComponentMask mask);
 
 	/** Render Components */
 
 	const int COMPONENTS_FIRST_BIT = 0;
 
-	const std::bitset<MASK_SIZE> DRAWABLE		(1<<(0+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> POSITION		(1<<(1+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> TRANSFORM		(1<<(2+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> FIXEDSPRITE	(1<<(3+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> SPRITE			(1<<(4+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> ANIMATION		(1<<(5+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> SHAPE			(1<<(6+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> BOUND_BOX		(1<<(7+COMPONENTS_FIRST_BIT));
-	const std::bitset<MASK_SIZE> TEXT_OUTPUT	(1<<(8+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> POSITION		(1<<(0+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> TRANSFORM		(1<<(1+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> FIXEDSPRITE	(1<<(2+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> SPRITE			(1<<(3+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> ANIMATION		(1<<(4+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> SHAPE			(1<<(5+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> BOUND_BOX		(1<<(6+COMPONENTS_FIRST_BIT));
+	const std::bitset<MASK_SIZE> TEXT_OUTPUT	(1<<(7+COMPONENTS_FIRST_BIT));
 
 	/** Physics Components */
 
-	const int PHYSICS_FIRST_BIT = COMPONENTS_FIRST_BIT + 9;
+	const int PHYSICS_FIRST_BIT = COMPONENTS_FIRST_BIT + 8;
 
 	const std::bitset<MASK_SIZE> MASS			(1<<(0+PHYSICS_FIRST_BIT));
 	const std::bitset<MASK_SIZE> VELOCITY		(1<<(1+PHYSICS_FIRST_BIT));
