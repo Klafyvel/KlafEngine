@@ -14,7 +14,7 @@ namespace klf
 		float d2 = d*d;
 		Component& c = getComponent(SHAPE, entity);
 		auto s = std::dynamic_pointer_cast<Shape>(c.value);
-		sf::VertexArray n;
+		sf::VertexArray n(sf::TrianglesFan);
 		for(int i=0;i<s->vertices.getVertexCount();i++)
 		{
 			float e = pow(s->vertices[i].position.x-p.x, 2) + pow(s->vertices[i].position.y-p.y, 2);

@@ -29,7 +29,8 @@ namespace klf
 			ComponentData(),
 			sf::Transformable(),
 			sf::Drawable(),
-			vertices(sf::TrianglesFan, count)
+			vertices(sf::TrianglesFan, count),
+			color(sf::Color::White)
 		{}
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
