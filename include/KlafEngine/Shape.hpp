@@ -36,6 +36,12 @@ namespace klf
 			states.transform *= getTransform();
 			target.draw(vertices, states);
 		}
+		static std::unique_ptr<Component> shapeFactory(Entity e)
+		{
+			std::unique_ptr<klf::Component> c = klf::Component::createEmptyComponent(e);
+			c->value = std::shared_ptr<Shape>(new Shape(0));
+			return c;
+		}
 		sf::VertexArray vertices;
 		sf::Color color;
 
