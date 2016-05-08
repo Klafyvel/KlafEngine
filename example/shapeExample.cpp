@@ -25,6 +25,13 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			else if (event.type == sf::Event::MouseButtonReleased)
+			{
+				if(event.mouseButton.button == sf::Mouse::Right)
+					s.removePoint(e, sf::Vector2f(event.mouseButton.x, event.mouseButton.y), 30);
+				else
+					s.addPoint(e, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
+			}
 		}
 
 		window.clear();
