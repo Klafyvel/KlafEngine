@@ -8,9 +8,12 @@
  * It's basically a SFML binding to the ECS.
  */
 
+#include <memory>
+
 #include <SFML/Graphics.hpp>
 
 #include <KlafEngine/Core.hpp>
+#include <KlafEngine/ComponentsMask.hpp>
 
 /**
  * @namespace klf
@@ -26,14 +29,15 @@ namespace klf
 			ComponentData(),
 			sf::Transformable(),
 			sf::Drawable(),
-			m_vertices(sf::LinesStrip, count + 1)
+			vertices(sf::TrianglesFan, count)
 		{}
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 			states.transform *= getTransform();
-			target.draw(m_vertices, states);
+			target.draw(vertices, states);
 		}
-		sf::VertexArray m_vertices;
+		sf::VertexArray vertices;
+		sf::Color color;
 
 	};
 
@@ -41,6 +45,12 @@ namespace klf
 	{
 	public:
 		ShapesHandler(Application& app) : System(app) {}
+		void addPoint(Entity entity, sf::Vector2f p);
+		void removePoint(Entity entity, sf::Vector2f p, float d);
+		void changeCenter(Entity entity, sf::Vector2f p);
+		void setVisibleBoundBox(Entity entity, bool state);
+		Entity createShape();
+		void createShape(Entity e);
 	};
 }
 
