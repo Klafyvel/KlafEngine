@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include <string>
 
 #include <SFML/Graphics.hpp>
 
@@ -18,6 +20,12 @@ int main()
 	klf::Renderer r(app);
 	klf::Entity e = s.createShape();
 
+	sf::Clock clock;
+    float lastTime = 0;
+
+	unsigned int n_iter = 0;
+	float sum = 0;
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -32,6 +40,18 @@ int main()
 				else
 					s.addPoint(e, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
 			}
+		}
+		sum += 1.f / clock.getElapsedTime().asSeconds();
+		n_iter += 1;
+		clock.restart();
+		std::ostringstream ss;
+		ss << sum / n_iter;
+		window.setTitle("FPS : " + ss.str());
+
+		if(n_iter > 1000)
+		{
+			n_iter = 0;
+			sum = 0.f;
 		}
 
 		window.clear();
