@@ -13,6 +13,11 @@ add_executable(
 )
 
 add_executable(
+	vectorExample
+	vectorExample.cpp
+)
+
+add_executable(
 	shapeExample
 	shapeExample.cpp
 )
@@ -23,6 +28,10 @@ target_link_libraries(
 )
 target_link_libraries(
 	shapeExample
+	KlafEngine
+)
+target_link_libraries(
+	vectorExample
 	KlafEngine
 )
 # Detect and add SFML
