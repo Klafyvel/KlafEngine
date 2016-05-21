@@ -13,24 +13,52 @@
  */
 namespace klf
 {
+	/** @class Vector2
+	 * @brief 2D Vector.
+	 */
 	class Vector2
 	{
 	public:
-		float x;
-		float y;
+		float x; /** X component */
+		float y; /** Y component */
 
+		/** @brief Constructor
+		 * @param x x value
+		 * @param y y value
+		 */
 		Vector2(float x, float y) : x(x), y(y) {}
+		/** Copy constructor
+		 * @param v Vector to be copied.
+		 */
 		Vector2(sf::Vector2f v) : x(v.x), y(v.y) {}
 
+		/** @brief Compute the normalized vector.
+		 * @return Normalized vector.
+		 */
 		Vector2 norm();
+		/** @brief Compute vector's magnitude.
+		 * @return Magnitude.
+		 */
 		float mag();
+		/** @brief Compute angle between vector and (1,0).
+		 * @return angle
+		 */
 		float ang();
 
+		/** Convert Vector2 to SFML Vector2f.
+		 * @return SFML Vector2f
+		 */
 		sf::Vector2f toSFML() const;
 
+		/** Compare two Vector2.*/
 		bool operator==(const Vector2& v) const;
+		/** Compare two Vector2.*/
 		bool operator!=(const Vector2& v) const;
 
+		/** @brief Rotate the Vector2 by the given angle.
+		 *	@param angle The angle the vector is to be rotated.
+		 *	@return A Vector2.
+		 */
 		Vector2 operator%(const float angle) const;
 		Vector2& operator%=(const float angle);
 		Vector2 operator/(const float f) const;
