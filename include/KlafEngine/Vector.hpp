@@ -46,6 +46,11 @@ namespace klf
 		 * @return angle
 		 */
 		float ang();
+		/** @brief Compute an orthogonal vector.
+		 * This is more precise than rotating M_PI*2.
+		 * @return orthogonal vector.
+		 */
+		Vector2 orthogonal();
 
 		/** Convert Vector2 to SFML Vector2f.
 		 * @return SFML Vector2f

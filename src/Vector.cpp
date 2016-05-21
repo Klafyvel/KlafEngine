@@ -17,6 +17,11 @@ namespace klf
 		return atan2(x, y);
 	}
 
+	Vector2 Vector2::orthogonal()
+	{
+		return Vector2(-y, x);
+	}
+
 	sf::Vector2f Vector2::toSFML() const
 	{
 		return sf::Vector2f(x, y);
