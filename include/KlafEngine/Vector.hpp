@@ -16,7 +16,7 @@ namespace klf
 	/** @class Vector2
 	 * @brief 2D Vector.
 	 */
-	class Vector2
+	class Vector2 : public ComponentData
 	{
 	public:
 		float x; /** X component */
