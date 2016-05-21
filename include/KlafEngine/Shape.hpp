@@ -29,7 +29,7 @@ namespace klf
 			ComponentData(),
 			sf::Transformable(),
 			sf::Drawable(),
-			vertices(sf::TrianglesFan, count),
+			vertices(sf::LinesStrip, count),
 			color(sf::Color::White)
 		{}
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -54,7 +54,6 @@ namespace klf
 		ShapesHandler(Application& app) : System(app) {}
 		void addPoint(Entity entity, sf::Vector2f p);
 		void removePoint(Entity entity, sf::Vector2f p, float d);
-		void changeCenter(Entity entity, sf::Vector2f p);
 		void setVisibleBoundBox(Entity entity, bool state);
 		Entity createShape();
 		void createShape(Entity e);
