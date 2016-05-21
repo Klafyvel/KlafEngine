@@ -6,6 +6,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <KlafEngine/Core.hpp>
+
 /**
  * @namespace klf
  *
