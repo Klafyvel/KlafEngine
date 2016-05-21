@@ -8,47 +8,28 @@ namespace klf
 		MassData::setInertia(inertia);
 	}
 
-	MassData::MassData()
-	{
-		MassData::setMass(0);
-		MassData::setInertia(0);
-	}
-
 	void MassData::setMass(float mass)
 	{
-		m_mass = mass;
+		this->mass = mass;
 		if(mass==0)
-			m_invMass = 0;
+			this->invMass = 0;
 		else
-			m_invMass = 1.0 / mass;
+			this->invMass = 1.0 / mass;
 	}
 
 	void MassData::setInertia(float inertia)
 	{
-		m_inertia = inertia;
+		this->inertia = inertia;
 		if(inertia == 0)
-			m_invInertia = 0;
+			this->invInertia = 0;
 		else
-			m_invInertia = 1.0 / inertia;
+			this->invInertia = 1.0 / inertia;
 	}
 
-	float MassData::getMass()
+	std::unique_ptr<klf::Component> MassData::factory(unsigned int e)
 	{
-		return m_mass;
-	}
-
-	float MassData::getInverseMass()
-	{
-		return m_invMass;
-	}
-
-	float MassData::getInertia()
-	{
-		return m_inertia;
-	}
-
-	float MassData::getInverseInertia()
-	{
-		return m_invInertia;
+		std::unique_ptr<klf::Component> c = klf::Component::createEmptyComponent(e);
+		c->value = std::shared_ptr<klf::ComponentData>(new MassData());
+		return c;
 	}
 }

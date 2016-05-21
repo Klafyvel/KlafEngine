@@ -8,7 +8,10 @@
  */
 
 #include <iostream>
+#include <memory>
 #include <SFML/Graphics.hpp>
+
+#include <KlafEngine/Core.hpp>
 
 /**
  * @namespace klf
@@ -21,7 +24,7 @@ namespace klf
 	 * @brief Used to store mass data.
 	 * Value stored : mass, inverse mass, inertia, inverse inertia
 	 */
-	class MassData
+	class MassData : public ComponentData
 	{
 	public:
 		/** @brief MassData constuctor.
@@ -30,11 +33,6 @@ namespace klf
 		* @param inertia The inertia.
 		*/
 		MassData(float mass=0, float inertia=0);
-
-		/** @brief MassData's default constructor.
-		* Mass and inertia will be set to 0.
-		*/
-		MassData();
 
 		/** @brief Set the mass value.
 		* A null mass will cause the inverse mass to be set at zero.
@@ -48,31 +46,15 @@ namespace klf
 		*/
 		void setInertia(float inertia);
 
-		/** @brief Get the mass value.
-		* @return mass value.
-		*/
-		float getMass();
+		/** @brief MassData Component factory.
+		 * @param e entity
+		 */
+		static std::unique_ptr<klf::Component> factory(unsigned int e);
 
-		/** @brief Get the inverse mass value.
-		* @return inverse mass value.
-		*/
-		float getInverseMass();
-
-		/** @brief Get the inertia value.
-		* @return inertia value.
-		*/
-		float getInertia();
-
-		/** @brief Get the inverse inertia value.
-		* @return inverse inertia value.
-		*/
-		float getInverseInertia();
-
-	private:
-		float m_mass; /**Mass value.*/
-		float m_invMass; /**Inverse mass value.*/
-		float m_inertia; /**Inertia value.*/
-		float m_invInertia; /**Inverse inertia value.*/
+		float mass; /**Mass value.*/
+		float invMass; /**Inverse mass value.*/
+		float inertia; /**Inertia value.*/
+		float invInertia; /**Inverse inertia value.*/
 	};
 
 	/** @class Material
