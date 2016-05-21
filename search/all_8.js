@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['physics_5ffirst_5fbit',['PHYSICS_FIRST_BIT',['../namespaceklf.html#a68adbcde667f0886d194928b37d08925',1,'klf']]],
-  ['physicutils_2ehpp',['PhysicUtils.hpp',['../_physic_utils_8hpp.html',1,'']]]
+  ['norm',['norm',['../classklf_1_1_vector2.html#aafd63e6256905bf4a7dd9b9c83e46d52',1,'klf::Vector2']]]
 ];

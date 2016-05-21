@@ -1,3 +1,5 @@
 <map id="/home/klafyvel/dev/KlafEngine/include/KlafEngine/ComponentsMask.hpp" name="/home/klafyvel/dev/KlafEngine/include/KlafEngine/ComponentsMask.hpp">
-<area shape="rect" id="node2" href="$_core_8hpp.html" title="KlafEngine&#39;s core. " alt="" coords="44,109,191,165"/>
+<area shape="rect" id="node2" href="$_core_8hpp.html" title="KlafEngine&#39;s core. " alt="" coords="5,109,152,165"/>
+<area shape="rect" id="node3" href="$_renderer_8hpp.html" title="KlafEngine&#39;s rendering system. " alt="" coords="72,317,243,373"/>
+<area shape="rect" id="node4" href="$_shape_8hpp.html" title="Everything to draw a shape. " alt="" coords="80,213,235,269"/>
 </map>

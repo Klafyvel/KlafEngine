@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['m_5fapplication',['m_application',['../classklf_1_1_system.html#a8c1df96d36c35a2fe9868a5169222a87',1,'klf::System']]],
+  ['m_5factiveentities',['m_activeEntities',['../classklf_1_1_application.html#a3378e7d0798795a78d4ee1eff68dfcbe',1,'klf::Application']]],
   ['m_5fcomponents',['m_components',['../classklf_1_1_application.html#ade0e562a5dc41fd1f189b9ec28a68844',1,'klf::Application']]],
   ['m_5fentities',['m_entities',['../classklf_1_1_application.html#a92fa8c60b25f19d6a0cfa58e487ce035',1,'klf::Application']]],
   ['m_5ffreeentityid',['m_freeEntityId',['../classklf_1_1_application.html#a88ca9dd49d125cd1db571ac9e51f3986',1,'klf::Application']]],

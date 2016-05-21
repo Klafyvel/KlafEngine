@@ -4,5 +4,6 @@ var searchData=
   ['addentity',['addEntity',['../classklf_1_1_application.html#aa43bff307ccd8a0ec891803ca7004e2d',1,'klf::Application']]],
   ['addmask',['addMask',['../classklf_1_1_application.html#a271e072d22352024266bf77767b2c363',1,'klf::Application']]],
   ['addsystem',['addSystem',['../classklf_1_1_application.html#ac631dc712c0951fbcb6b83ff78a7bb23',1,'klf::Application']]],
+  ['ang',['ang',['../classklf_1_1_vector2.html#a679745dd7672791e997b0c04c4a40b7d',1,'klf::Vector2']]],
   ['application',['Application',['../classklf_1_1_application.html#af7dfaee69598f264b5e99d333edd8c92',1,'klf::Application']]]
 ];

@@ -71,6 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -134,11 +135,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa43bff307ccd8a0ec891803ca7004e2d"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#aa43bff307ccd8a0ec891803ca7004e2d">addEntity</a> ()</td></tr>
 <tr class="memdesc:aa43bff307ccd8a0ec891803ca7004e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an entity to the system.  <a href="#aa43bff307ccd8a0ec891803ca7004e2d">More...</a><br /></td></tr>
 <tr class="separator:aa43bff307ccd8a0ec891803ca7004e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6eb5dde3d2785af89f0762fe8abc4ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6eb5dde3d2785af89f0762fe8abc4ec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#af6eb5dde3d2785af89f0762fe8abc4ec">makeActive</a> (unsigned int entity)</td></tr>
+<tr class="memdesc:af6eb5dde3d2785af89f0762fe8abc4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an entity active. <br /></td></tr>
+<tr class="separator:af6eb5dde3d2785af89f0762fe8abc4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a950bfa7c64227b0e35363d9e23ad7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32a950bfa7c64227b0e35363d9e23ad7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a32a950bfa7c64227b0e35363d9e23ad7">makeUnactive</a> (unsigned int entity)</td></tr>
+<tr class="memdesc:a32a950bfa7c64227b0e35363d9e23ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an entity unactive. <br /></td></tr>
+<tr class="separator:a32a950bfa7c64227b0e35363d9e23ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a271e072d22352024266bf77767b2c363"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a271e072d22352024266bf77767b2c363">addMask</a> (const unsigned int entityId, const ComponentMask mask)</td></tr>
-<tr class="memdesc:a271e072d22352024266bf77767b2c363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a mask on the given entity.  <a href="#a271e072d22352024266bf77767b2c363">More...</a><br /></td></tr>
+<tr class="memdesc:a271e072d22352024266bf77767b2c363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a mask on the given entity. The entity must be active.  <a href="#a271e072d22352024266bf77767b2c363">More...</a><br /></td></tr>
 <tr class="separator:a271e072d22352024266bf77767b2c363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa20d52d7405b6d1afe288c9463b551f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#aa20d52d7405b6d1afe288c9463b551f3">removeMask</a> (const unsigned int entityId, const ComponentMask mask)</td></tr>
-<tr class="memdesc:aa20d52d7405b6d1afe288c9463b551f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the mask on the given entity.  <a href="#aa20d52d7405b6d1afe288c9463b551f3">More...</a><br /></td></tr>
+<tr class="memdesc:aa20d52d7405b6d1afe288c9463b551f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the mask on the given entity. The entity must be active.  <a href="#aa20d52d7405b6d1afe288c9463b551f3">More...</a><br /></td></tr>
 <tr class="separator:aa20d52d7405b6d1afe288c9463b551f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fd3d377a1e1e42f3b8606d66de27de0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a8fd3d377a1e1e42f3b8606d66de27de0">removeEntity</a> (const unsigned int id)</td></tr>
 <tr class="memdesc:a8fd3d377a1e1e42f3b8606d66de27de0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the entity from the application.  <a href="#a8fd3d377a1e1e42f3b8606d66de27de0">More...</a><br /></td></tr>
@@ -167,6 +176,8 @@ std::unordered_map&lt; unsigned int, std::unique_ptr&lt; <a class="el" href="cla
 <tr class="separator:ac556cd3de1c2c0f76f4eb654cff2a400"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92fa8c60b25f19d6a0cfa58e487ce035"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; unsigned int, ComponentMask &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a92fa8c60b25f19d6a0cfa58e487ce035">m_entities</a></td></tr>
 <tr class="separator:a92fa8c60b25f19d6a0cfa58e487ce035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3378e7d0798795a78d4ee1eff68dfcbe"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; unsigned int, ComponentMask &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a3378e7d0798795a78d4ee1eff68dfcbe">m_activeEntities</a></td></tr>
+<tr class="separator:a3378e7d0798795a78d4ee1eff68dfcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1573ad318046844c29b85acaaff5f02"><td class="memItemLeft" align="right" valign="top">std::queue&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#af1573ad318046844c29b85acaaff5f02">m_freeSystemId</a></td></tr>
 <tr class="separator:af1573ad318046844c29b85acaaff5f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88ca9dd49d125cd1db571ac9e51f3986"><td class="memItemLeft" align="right" valign="top">std::queue&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a88ca9dd49d125cd1db571ac9e51f3986">m_freeEntityId</a></td></tr>
@@ -247,7 +258,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add a mask on the given entity. </p>
+<p>Add a mask on the given entity. The entity must be active. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entityId</td><td>The entity id. </td></tr>
@@ -414,7 +425,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove the mask on the given entity. </p>
+<p>Remove the mask on the given entity. The entity must be active. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entityId</td><td>The entity id. </td></tr>
@@ -450,6 +461,27 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a3378e7d0798795a78d4ee1eff68dfcbe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;unsigned int, ComponentMask&gt; klf::Application::m_activeEntities</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Every application's entity. </p>
+
+</div>
+</div>
 <a class="anchor" id="ade0e562a5dc41fd1f189b9ec28a68844"></a>
 <div class="memitem">
 <div class="memproto">
@@ -530,7 +562,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Every application's entity. </p>
+<p>Every active application's entity. </p>
 
 </div>
 </div>
