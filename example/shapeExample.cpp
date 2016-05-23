@@ -26,6 +26,8 @@ int main()
 	unsigned int n_iter = 0;
 	float sum = 0;
 
+	bool moving = false;
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -35,12 +37,29 @@ int main()
 				window.close();
 			else if (event.type == sf::Event::MouseButtonReleased)
 			{
-				if(event.mouseButton.button == sf::Mouse::Right)
+				if(!moving && event.mouseButton.button == sf::Mouse::Right)
 					s.removePoint(e, sf::Vector2f(event.mouseButton.x, event.mouseButton.y), 30);
 				else
 					s.addPoint(e, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
 			}
 		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			sf::Vector2i i = sf::Mouse::getPosition(window);
+			sf::Vector2f p(i.x,i.y);
+			s.movePoint(e, p, 20);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			s.move(e, sf::Vector2f(-1,0));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			s.move(e, sf::Vector2f(1,0));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			s.move(e, sf::Vector2f(0,-1));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			s.move(e, sf::Vector2f(0,1));
+
+
 		sum += 1.f / clock.getElapsedTime().asSeconds();
 		n_iter += 1;
 		clock.restart();

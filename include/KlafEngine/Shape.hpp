@@ -5,15 +5,16 @@
  * @file Shape.hpp
  * @brief Everything to draw a shape.
  * @author klafyvel
- * It's basically a SFML binding to the ECS.
  */
 
 #include <memory>
+#include <vector>
 
 #include <SFML/Graphics.hpp>
 
 #include <KlafEngine/Core.hpp>
 #include <KlafEngine/ComponentsMask.hpp>
+#include <KlafEngine/Vector.hpp>
 
 /**
  * @namespace klf
@@ -30,6 +31,7 @@ namespace klf
 			sf::Transformable(),
 			sf::Drawable(),
 			vertices(sf::LinesStrip, count),
+			sum(0,0),
 			color(sf::Color::White)
 		{}
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -44,6 +46,7 @@ namespace klf
 			return c;
 		}
 		sf::VertexArray vertices;
+		Vector2 sum;
 		sf::Color color;
 
 	};
@@ -54,9 +57,12 @@ namespace klf
 		ShapesHandler(Application& app) : System(app) {}
 		void addPoint(Entity entity, sf::Vector2f p);
 		void removePoint(Entity entity, sf::Vector2f p, float d);
+		void movePoint(Entity entity, sf::Vector2f p, float d);
 		void setVisibleBoundBox(Entity entity, bool state);
+		void collideAABB(Entity e1, Entity e2);
 		Entity createShape();
 		void createShape(Entity e);
+		void move(Entity e, sf::Vector2f mv);
 	};
 }
 
