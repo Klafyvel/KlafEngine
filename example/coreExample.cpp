@@ -69,20 +69,20 @@ int main()
 	app.registerComponentType(0, factory);
 
 	std::cout << "Let's create 100 entites with our MyCompData as component." << std::endl;
-	for(auto i : range(0,100))
+	for(int i : range(0,100))
 	{
 		unsigned int entity = app.addEntity();
 		app.addMask(entity, 0);
 	}
 	std::cout << "Done." << std::endl;
 	std::cout << "Let's remove entites 40 to 59 ." << std::endl;
-	for(auto i : range(40,60))
+	for(int i : range(40,60))
 	{
 		app.removeEntity(i);
 	}
 	std::cout << "Done." << std::endl;
 	std::cout << "Let's create 60 entites with our MyCompData as component." << std::endl;
-	for(auto i : range(0,60))
+	for(int i : range(0,60))
 	{
 		unsigned int e = app.addEntity();
 		app.addMask(e, 0);
