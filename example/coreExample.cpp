@@ -27,7 +27,7 @@ public:
 	void onUpdate()
 	{
 		std::cout << "Update ! " << std::endl;
-		klf::Component& c = getComponent(0, 0);
+		klf::Component& c = getComponent(1, 0);
 		std::shared_ptr<MyCompData> d = std::dynamic_pointer_cast<MyCompData>(c.value);
 		std::cout << "Entity : " << c.entity << " " << d->x << " " << d->y << std::endl;
 		d->x += 20;
@@ -66,13 +66,13 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(800, 600), "KlafEngine");
 	klf::Application app;
 
-	app.registerComponentType(0, factory);
+	app.registerComponentType(1, factory);
 
 	std::cout << "Let's create 100 entites with our MyCompData as component." << std::endl;
 	for(int i : range(0,100))
 	{
 		unsigned int entity = app.addEntity();
-		app.addMask(entity, 0);
+		app.addMask(entity, 1);
 	}
 	std::cout << "Done." << std::endl;
 	std::cout << "Let's remove entites 40 to 59 ." << std::endl;
@@ -85,7 +85,7 @@ int main()
 	for(int i : range(0,60))
 	{
 		unsigned int e = app.addEntity();
-		app.addMask(e, 0);
+		app.addMask(e, 1);
 	}
 
 
