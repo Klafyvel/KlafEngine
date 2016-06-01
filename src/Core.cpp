@@ -49,11 +49,7 @@ namespace klf
 		unsigned int i = 0;
 		if (m_freeEntityId.empty())
 		{
-			i = m_entities.size();
-			while(m_entities.find(i) != m_entities.end())
-			{
-				i += 1;
-			}
+			i = m_greaterEntity;
 		}
 		else
 		{
@@ -97,7 +93,10 @@ namespace klf
 	{
 		makeUnactive(id);
 		m_entities.erase(id);
-		m_freeEntityId.push(id);
+		if (id == m_greaterEntity-1)
+			m_greaterEntity = id;
+		else
+			m_freeEntityId.push(id);
 	}
 
 	void Application::registerComponentType(const ComponentMask mask, EmptyComponentFactory factory)

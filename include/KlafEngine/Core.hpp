@@ -112,7 +112,7 @@ namespace klf
 	public:
 		/** @brief Constructor
 		 */
-		Application()  {}
+		Application() : m_greaterEntity(0) {}
 
 		/** @brief Add a system to the application
 		 * @param systemFactory A SystemFactory to build the system.
@@ -177,7 +177,9 @@ namespace klf
 		std::unordered_map<unsigned int, ComponentMask> m_entities; /** Every application's entity. */
 		std::unordered_map<unsigned int, ComponentMask> m_activeEntities; /** Every active application's entity. */
 		std::queue<unsigned int> m_freeSystemId; /** Free systems ids. */
-		std::queue<unsigned int> m_freeEntityId; /** Free entities id. */
+		std::queue<Entity> m_freeEntityId; /** Free entities id. */
+		Entity m_greaterEntity;
+
 	};
 
 
