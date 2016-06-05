@@ -125,5 +125,14 @@ namespace klf
 		m_components.erase(componentId);
 	}
 
-
+	void Application::update()
+	{
+		for(auto s : m_systemProcessing)
+			m_systems[s]->update();
+		m_systemProcessing.clear();
+	}
+	void Application::pushUpdate(unsigned int id)
+	{
+		m_systemProcessing.push_back(id);
+	}
 }

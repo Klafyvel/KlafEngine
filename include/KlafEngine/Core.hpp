@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <bitset>
 #include <queue>
+#include <deque>
 #include <functional>
 #include <memory>
 
@@ -85,7 +86,8 @@ namespace klf
 		/** @brief Constructor.
 		 * @param application A reference to the system owner.
 		 */
-		System(Application &application) : m_application(application){}
+		System(Application &application, unsigned int id) : m_application(application), m_appId(id){}
+		virtual void update() {}
 	protected:
 		/** @brief Access to the entity's component. May not be overrided
 		 * @param mask The component's mask.
@@ -97,6 +99,7 @@ namespace klf
 		std::unordered_map<unsigned int, ComponentMask>& getActiveEntities();
 
 		Application& m_application;/** System owner.*/
+		unsigned int m_appId;/** System id for the application. */
 	};
 
 	/** @brief Typedef for system factories.
@@ -123,6 +126,10 @@ namespace klf
 		 * @param id System id.
 		 */
 		void removeSystem(unsigned int id);
+		/** @brief Cause a system to be updated at the next update.
+		 * @param id System id.
+		 */
+		void pushUpdate(unsigned int id);
 
 		/** @brief Add an entity to the system.
 		 * @return The entity id.
@@ -168,6 +175,9 @@ namespace klf
 		 * @param mask The component mask.
 		 */
 		void removeComponentRow(const ComponentMask mask);
+		/** @brief Run the update on the systems which have to be updated.
+		 */
+		void update();
 
 
 	protected:
@@ -178,6 +188,7 @@ namespace klf
 		std::unordered_map<unsigned int, ComponentMask> m_activeEntities; /** Every active application's entity. */
 		std::queue<unsigned int> m_freeSystemId; /** Free systems ids. */
 		std::queue<Entity> m_freeEntityId; /** Free entities id. */
+		std::deque<unsigned int> m_systemProcessing; /** Systems on wich the update method will be called. */
 		Entity m_greaterEntity;
 
 	};
