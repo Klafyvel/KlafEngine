@@ -1,5 +1,7 @@
 <map id="/home/klafyvel/dev/KlafEngine/include/KlafEngine/ComponentsMask.hpp" name="/home/klafyvel/dev/KlafEngine/include/KlafEngine/ComponentsMask.hpp">
-<area shape="rect" id="node2" href="$_core_8hpp.html" title="KlafEngine&#39;s core. " alt="" coords="5,109,152,165"/>
-<area shape="rect" id="node3" href="$_renderer_8hpp.html" title="KlafEngine&#39;s rendering system. " alt="" coords="72,317,243,373"/>
-<area shape="rect" id="node4" href="$_shape_8hpp.html" title="Everything to draw a shape. " alt="" coords="80,213,235,269"/>
+<area shape="rect" id="node2" href="$_core_8hpp.html" title="KlafEngine&#39;s core. " alt="" coords="288,109,434,165"/>
+<area shape="rect" id="node4" href="$_renderer_8hpp.html" title="KlafEngine&#39;s rendering system. " alt="" coords="397,421,568,477"/>
+<area shape="rect" id="node5" href="$_shape_8hpp.html" title="Everything to draw a shape. " alt="" coords="160,317,314,373"/>
+<area shape="rect" id="node3" href="$_physic_utils_8hpp.html" title="Utility classes for the physic module. " alt="" coords="208,213,394,269"/>
+<area shape="rect" id="node6" href="$_vector_8hpp_source.html" title="/home/klafyvel/dev\l/KlafEngine/include\l/KlafEngine/Vector.hpp" alt="" coords="28,213,184,269"/>
 </map>

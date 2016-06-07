@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['vector2',['Vector2',['../classklf_1_1_vector2.html#ad8f32e7f50bd2a5f6dc78c631984d71e',1,'klf::Vector2::Vector2(float x, float y)'],['../classklf_1_1_vector2.html#a4000bb3b31d0c00a3801e44183b1afbc',1,'klf::Vector2::Vector2(sf::Vector2f v)']]]
+  ['setinertia',['setInertia',['../classklf_1_1_mass_data.html#a42f6ffae9a962b9eb521b92f256f9748',1,'klf::MassData']]],
+  ['setmass',['setMass',['../classklf_1_1_mass_data.html#a09bb28eca815608d6c55e5f2e8061fbf',1,'klf::MassData']]],
+  ['system',['System',['../classklf_1_1_system.html#a3b0f01dba4d2980689d6b6b401e922e0',1,'klf::System']]]
 ];

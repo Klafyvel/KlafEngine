@@ -132,46 +132,63 @@ Collaboration diagram for klf::ShapesHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2c41f53369c7d2b3176625d0fe322b20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c41f53369c7d2b3176625d0fe322b20"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ShapesHandler</b> (<a class="el" href="classklf_1_1_application.html">Application</a> &amp;app)</td></tr>
-<tr class="separator:a2c41f53369c7d2b3176625d0fe322b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50dcb7c08e2a39f8c9b230908d510635"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50dcb7c08e2a39f8c9b230908d510635"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ShapesHandler</b> (<a class="el" href="classklf_1_1_application.html">Application</a> &amp;app, unsigned int id)</td></tr>
+<tr class="separator:a50dcb7c08e2a39f8c9b230908d510635"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0e476e0a8054105f5f9a4faaf04baef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0e476e0a8054105f5f9a4faaf04baef"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addPoint</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> entity, sf::Vector2f p)</td></tr>
 <tr class="separator:aa0e476e0a8054105f5f9a4faaf04baef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af466ed043683c079d77e352428a1bd94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af466ed043683c079d77e352428a1bd94"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>removePoint</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> entity, sf::Vector2f p, float d)</td></tr>
 <tr class="separator:af466ed043683c079d77e352428a1bd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a997a0192b303a0ca32214809093f96bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a997a0192b303a0ca32214809093f96bd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>changeCenter</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> entity, sf::Vector2f p)</td></tr>
-<tr class="separator:a997a0192b303a0ca32214809093f96bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c1f393aca34180d4b33eccbc5a80582"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c1f393aca34180d4b33eccbc5a80582"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>movePoint</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> entity, sf::Vector2f p, float d)</td></tr>
+<tr class="separator:a8c1f393aca34180d4b33eccbc5a80582"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26bee1cb3f431879a5fd4b19cb8fb208"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26bee1cb3f431879a5fd4b19cb8fb208"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setVisibleBoundBox</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> entity, bool state)</td></tr>
 <tr class="separator:a26bee1cb3f431879a5fd4b19cb8fb208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e28a371275ba251a750ea918fcdc524"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e28a371275ba251a750ea918fcdc524"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>collide</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> e1, <a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> e2)</td></tr>
+<tr class="separator:a0e28a371275ba251a750ea918fcdc524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a728dbea346b3fda2de031d99c4532a59"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a728dbea346b3fda2de031d99c4532a59"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>collideSAT</b> (const <a class="el" href="classklf_1_1_shape.html">Shape</a> &amp;s1, const <a class="el" href="classklf_1_1_shape.html">Shape</a> &amp;s2)</td></tr>
+<tr class="separator:a728dbea346b3fda2de031d99c4532a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa340bae075f9d481d0fe76a154d2a389"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa340bae075f9d481d0fe76a154d2a389"></a>
 <a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><b>createShape</b> ()</td></tr>
 <tr class="separator:aa340bae075f9d481d0fe76a154d2a389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a752833da9444e824986c859622fbeea5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a752833da9444e824986c859622fbeea5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>createShape</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> e)</td></tr>
 <tr class="separator:a752833da9444e824986c859622fbeea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5ce22b45f32bc52f3760f0193ad4cab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5ce22b45f32bc52f3760f0193ad4cab"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>move</b> (<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> e, sf::Vector2f mv)</td></tr>
+<tr class="separator:ae5ce22b45f32bc52f3760f0193ad4cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classklf_1_1_system"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classklf_1_1_system')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classklf_1_1_system.html">klf::System</a></td></tr>
-<tr class="memitem:affebb64638c8ecefc34b48509fae35ec inherit pub_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#affebb64638c8ecefc34b48509fae35ec">System</a> (<a class="el" href="classklf_1_1_application.html">Application</a> &amp;application)</td></tr>
-<tr class="memdesc:affebb64638c8ecefc34b48509fae35ec inherit pub_methods_classklf_1_1_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#affebb64638c8ecefc34b48509fae35ec">More...</a><br /></td></tr>
-<tr class="separator:affebb64638c8ecefc34b48509fae35ec inherit pub_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b0f01dba4d2980689d6b6b401e922e0 inherit pub_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#a3b0f01dba4d2980689d6b6b401e922e0">System</a> (<a class="el" href="classklf_1_1_application.html">Application</a> &amp;application, unsigned int id)</td></tr>
+<tr class="memdesc:a3b0f01dba4d2980689d6b6b401e922e0 inherit pub_methods_classklf_1_1_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a3b0f01dba4d2980689d6b6b401e922e0">More...</a><br /></td></tr>
+<tr class="separator:a3b0f01dba4d2980689d6b6b401e922e0 inherit pub_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a270c2649fbb2753149376b264c4c0cc0 inherit pub_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a270c2649fbb2753149376b264c4c0cc0"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="separator:a270c2649fbb2753149376b264c4c0cc0 inherit pub_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classklf_1_1_system"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classklf_1_1_system')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classklf_1_1_system.html">klf::System</a></td></tr>
-<tr class="memitem:a98e43489226afa872f9466529c0d5889 inherit pro_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classklf_1_1_component.html">Component</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#a98e43489226afa872f9466529c0d5889">getComponent</a> (const ComponentMask mask, const unsigned int entity)</td></tr>
-<tr class="memdesc:a98e43489226afa872f9466529c0d5889 inherit pro_methods_classklf_1_1_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the entity's component. May not be overrided.  <a href="#a98e43489226afa872f9466529c0d5889">More...</a><br /></td></tr>
-<tr class="separator:a98e43489226afa872f9466529c0d5889 inherit pro_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae16b1404ac5726d368363d583be4d177 inherit pro_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae16b1404ac5726d368363d583be4d177"></a>
-std::unordered_map&lt; unsigned int, ComponentMask &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#ae16b1404ac5726d368363d583be4d177">getActiveEntities</a> ()</td></tr>
-<tr class="memdesc:ae16b1404ac5726d368363d583be4d177 inherit pro_methods_classklf_1_1_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the active entities. <br /></td></tr>
-<tr class="separator:ae16b1404ac5726d368363d583be4d177 inherit pro_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b5855d975a4aea96a92d40c017c613 inherit pro_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classklf_1_1_component.html">Component</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#a65b5855d975a4aea96a92d40c017c613">getComponent</a> (const ComponentMask mask, const <a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> entity) const </td></tr>
+<tr class="memdesc:a65b5855d975a4aea96a92d40c017c613 inherit pro_methods_classklf_1_1_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the entity's component. May not be overrided.  <a href="#a65b5855d975a4aea96a92d40c017c613">More...</a><br /></td></tr>
+<tr class="separator:a65b5855d975a4aea96a92d40c017c613 inherit pro_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8095c5bba070baf23ab6325352beaaf7 inherit pro_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top">ComponentMask&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#a8095c5bba070baf23ab6325352beaaf7">getComponentMask</a> (const <a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> entity) const </td></tr>
+<tr class="memdesc:a8095c5bba070baf23ab6325352beaaf7 inherit pro_methods_classklf_1_1_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acces to the entity's mask.  <a href="#a8095c5bba070baf23ab6325352beaaf7">More...</a><br /></td></tr>
+<tr class="separator:a8095c5bba070baf23ab6325352beaaf7 inherit pro_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaa565a6ea3e9630dd7be5e7c709f1ab inherit pro_methods_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afaa565a6ea3e9630dd7be5e7c709f1ab"></a>
+std::unordered_map&lt; unsigned int, ComponentMask &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#afaa565a6ea3e9630dd7be5e7c709f1ab">getActiveEntities</a> () const </td></tr>
+<tr class="memdesc:afaa565a6ea3e9630dd7be5e7c709f1ab inherit pro_methods_classklf_1_1_system"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the active entities. <br /></td></tr>
+<tr class="separator:afaa565a6ea3e9630dd7be5e7c709f1ab inherit pro_methods_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classklf_1_1_system"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classklf_1_1_system')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classklf_1_1_system.html">klf::System</a></td></tr>
 <tr class="memitem:a8c1df96d36c35a2fe9868a5169222a87 inherit pro_attribs_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c1df96d36c35a2fe9868a5169222a87"></a>
 <a class="el" href="classklf_1_1_application.html">Application</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>m_application</b></td></tr>
 <tr class="separator:a8c1df96d36c35a2fe9868a5169222a87 inherit pro_attribs_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5af735eff3bce776a83d6760df66eb98 inherit pro_attribs_classklf_1_1_system"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_system.html#a5af735eff3bce776a83d6760df66eb98">m_appId</a></td></tr>
+<tr class="separator:a5af735eff3bce776a83d6760df66eb98 inherit pro_attribs_classklf_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/klafyvel/dev/KlafEngine/include/KlafEngine/<a class="el" href="_shape_8hpp_source.html">Shape.hpp</a></li>

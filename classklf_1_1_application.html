@@ -132,6 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abd92c80d77ea544c6985324956f165eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#abd92c80d77ea544c6985324956f165eb">removeSystem</a> (unsigned int id)</td></tr>
 <tr class="memdesc:abd92c80d77ea544c6985324956f165eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a system from the application by id.  <a href="#abd92c80d77ea544c6985324956f165eb">More...</a><br /></td></tr>
 <tr class="separator:abd92c80d77ea544c6985324956f165eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a5a0543c153946d35cc11023b060838"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a4a5a0543c153946d35cc11023b060838">pushUpdate</a> (unsigned int id)</td></tr>
+<tr class="memdesc:a4a5a0543c153946d35cc11023b060838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cause a system to be updated at the next update.  <a href="#a4a5a0543c153946d35cc11023b060838">More...</a><br /></td></tr>
+<tr class="separator:a4a5a0543c153946d35cc11023b060838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa43bff307ccd8a0ec891803ca7004e2d"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#aa43bff307ccd8a0ec891803ca7004e2d">addEntity</a> ()</td></tr>
 <tr class="memdesc:aa43bff307ccd8a0ec891803ca7004e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an entity to the system.  <a href="#aa43bff307ccd8a0ec891803ca7004e2d">More...</a><br /></td></tr>
 <tr class="separator:aa43bff307ccd8a0ec891803ca7004e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,6 +167,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a3213870b229cb55733767a8a76469ae6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a3213870b229cb55733767a8a76469ae6">removeComponentRow</a> (const ComponentMask mask)</td></tr>
 <tr class="memdesc:a3213870b229cb55733767a8a76469ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the component row of the mask.  <a href="#a3213870b229cb55733767a8a76469ae6">More...</a><br /></td></tr>
 <tr class="separator:a3213870b229cb55733767a8a76469ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab32ebaf8cf3fecfc18470a8b69405cdd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab32ebaf8cf3fecfc18470a8b69405cdd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#ab32ebaf8cf3fecfc18470a8b69405cdd">update</a> ()</td></tr>
+<tr class="memdesc:ab32ebaf8cf3fecfc18470a8b69405cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the update on the systems which have to be updated. <br /></td></tr>
+<tr class="separator:ab32ebaf8cf3fecfc18470a8b69405cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -180,8 +187,12 @@ std::unordered_map&lt; unsigned int, std::unique_ptr&lt; <a class="el" href="cla
 <tr class="separator:a3378e7d0798795a78d4ee1eff68dfcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1573ad318046844c29b85acaaff5f02"><td class="memItemLeft" align="right" valign="top">std::queue&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#af1573ad318046844c29b85acaaff5f02">m_freeSystemId</a></td></tr>
 <tr class="separator:af1573ad318046844c29b85acaaff5f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88ca9dd49d125cd1db571ac9e51f3986"><td class="memItemLeft" align="right" valign="top">std::queue&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a88ca9dd49d125cd1db571ac9e51f3986">m_freeEntityId</a></td></tr>
-<tr class="separator:a88ca9dd49d125cd1db571ac9e51f3986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc83cedddfa31f12d68f533dd4e023f"><td class="memItemLeft" align="right" valign="top">std::queue&lt; <a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#aefc83cedddfa31f12d68f533dd4e023f">m_freeEntityId</a></td></tr>
+<tr class="separator:aefc83cedddfa31f12d68f533dd4e023f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a315f706056a48b5c7e9136fcb84beec0"><td class="memItemLeft" align="right" valign="top">std::deque&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a315f706056a48b5c7e9136fcb84beec0">m_systemProcessing</a></td></tr>
+<tr class="separator:a315f706056a48b5c7e9136fcb84beec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e15e3b1d4c821cf839d19c568c19e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a07e15e3b1d4c821cf839d19c568c19e7">m_greaterEntity</a></td></tr>
+<tr class="separator:a07e15e3b1d4c821cf839d19c568c19e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -291,6 +302,30 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The system id. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4a5a0543c153946d35cc11023b060838"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void klf::Application::pushUpdate </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cause a system to be updated at the next update. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td><a class="el" href="classklf_1_1_system.html" title="Deal with Component&#39;s values. ">System</a> id. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -524,7 +559,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a88ca9dd49d125cd1db571ac9e51f3986"></a>
+<a class="anchor" id="aefc83cedddfa31f12d68f533dd4e023f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -532,7 +567,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::queue&lt;unsigned int&gt; klf::Application::m_freeEntityId</td>
+          <td class="memname">std::queue&lt;<a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a>&gt; klf::Application::m_freeEntityId</td>
         </tr>
       </table>
   </td>
@@ -566,6 +601,27 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a07e15e3b1d4c821cf839d19c568c19e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a> klf::Application::m_greaterEntity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Systems on wich the update method will be called. </p>
+
+</div>
+</div>
 <a class="anchor" id="ac556cd3de1c2c0f76f4eb654cff2a400"></a>
 <div class="memitem">
 <div class="memproto">
@@ -584,6 +640,27 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Every component rows. </p>
+
+</div>
+</div>
+<a class="anchor" id="a315f706056a48b5c7e9136fcb84beec0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::deque&lt;unsigned int&gt; klf::Application::m_systemProcessing</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Free entities id. </p>
 
 </div>
 </div>

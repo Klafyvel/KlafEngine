@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['registercomponenttype',['registerComponentType',['../classklf_1_1_application.html#afd2b250bdb8a58f71e1840c9ae1eed7f',1,'klf::Application']]],
-  ['removecomponentrow',['removeComponentRow',['../classklf_1_1_application.html#a3213870b229cb55733767a8a76469ae6',1,'klf::Application']]],
-  ['removecomponenttype',['removeComponentType',['../classklf_1_1_application.html#af12b4ba4ea0c5f86b25a3c688151416f',1,'klf::Application']]],
-  ['removeentity',['removeEntity',['../classklf_1_1_application.html#a8fd3d377a1e1e42f3b8606d66de27de0',1,'klf::Application']]],
-  ['removemask',['removeMask',['../classklf_1_1_application.html#aa20d52d7405b6d1afe288c9463b551f3',1,'klf::Application']]],
-  ['removesystem',['removeSystem',['../classklf_1_1_application.html#abd92c80d77ea544c6985324956f165eb',1,'klf::Application']]]
+  ['operator_21_3d',['operator!=',['../classklf_1_1_vector2.html#af00822070123eb26447a8ffb3519431a',1,'klf::Vector2']]],
+  ['operator_25',['operator%',['../classklf_1_1_vector2.html#a46b48d0f56d5b117ffc905ea304d3a49',1,'klf::Vector2']]],
+  ['operator_3d_3d',['operator==',['../classklf_1_1_vector2.html#add4aec828d1600d8150882c3fe04dae9',1,'klf::Vector2']]],
+  ['orthogonal',['orthogonal',['../classklf_1_1_vector2.html#a44b4e9bdf0234fbb1734ba0fd45c9780',1,'klf::Vector2']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7ecomponentdata',['~ComponentData',['../classklf_1_1_component_data.html#a7d6c988af1ab5b82df071773da492e47',1,'klf::ComponentData']]]
+  ['tosfml',['toSFML',['../classklf_1_1_vector2.html#aeedff7d8d64aad73d364e14a2909d0e6',1,'klf::Vector2']]]
 ];

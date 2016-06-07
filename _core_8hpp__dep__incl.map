@@ -1,4 +1,6 @@
 <map id="/home/klafyvel/dev/KlafEngine/include/KlafEngine/Core.hpp" name="/home/klafyvel/dev/KlafEngine/include/KlafEngine/Core.hpp">
-<area shape="rect" id="node2" href="$_renderer_8hpp.html" title="KlafEngine&#39;s rendering system. " alt="" coords="5,213,176,269"/>
-<area shape="rect" id="node3" href="$_shape_8hpp.html" title="Everything to draw a shape. " alt="" coords="71,109,225,165"/>
+<area shape="rect" id="node2" href="$_physic_utils_8hpp.html" title="Utility classes for the physic module. " alt="" coords="5,109,191,165"/>
+<area shape="rect" id="node3" href="$_renderer_8hpp.html" title="KlafEngine&#39;s rendering system. " alt="" coords="201,317,371,373"/>
+<area shape="rect" id="node4" href="$_shape_8hpp.html" title="Everything to draw a shape. " alt="" coords="266,213,421,269"/>
+<area shape="rect" id="node5" href="$_vector_8hpp_source.html" title="/home/klafyvel/dev\l/KlafEngine/include\l/KlafEngine/Vector.hpp" alt="" coords="317,109,473,165"/>
 </map>

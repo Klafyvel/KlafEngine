@@ -18,6 +18,7 @@ var classklf_1_1_vector2 =
     [ "operator/", "classklf_1_1_vector2.html#aa66d00f4cc42e7c5d104c1190fa05df2", null ],
     [ "operator/=", "classklf_1_1_vector2.html#af7dbe4ff83a5a40f150c26148734c04a", null ],
     [ "operator==", "classklf_1_1_vector2.html#add4aec828d1600d8150882c3fe04dae9", null ],
+    [ "orthogonal", "classklf_1_1_vector2.html#a44b4e9bdf0234fbb1734ba0fd45c9780", null ],
     [ "toSFML", "classklf_1_1_vector2.html#aeedff7d8d64aad73d364e14a2909d0e6", null ],
     [ "x", "classklf_1_1_vector2.html#aebaddf4e8dd2a4697ff8be060165f20b", null ],
     [ "y", "classklf_1_1_vector2.html#ae7efcfe9597be739799a5ffa0b7e11a7", null ]
