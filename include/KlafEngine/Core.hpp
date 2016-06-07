@@ -59,6 +59,14 @@ namespace klf
 		Component(unsigned int e) : entity(e)
 		{}
 
+		/** @brief Acces to the value with a Reference.
+		 * @return a reference to the value.
+		 */
+		ComponentData& getValue()
+		{
+			return *value;
+		}
+
 		/** @brief Dynamically allow a Component for the given entity.
 		 * @param entity The entity which own the component.
 		 * @return A std::unique_ptr on the component.
