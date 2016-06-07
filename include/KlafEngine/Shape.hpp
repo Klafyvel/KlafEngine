@@ -54,12 +54,13 @@ namespace klf
 	class ShapesHandler : public System
 	{
 	public:
-		ShapesHandler(Application& app) : System(app) {}
+		ShapesHandler(Application& app, unsigned int id) : System(app, id) {}
 		void addPoint(Entity entity, sf::Vector2f p);
 		void removePoint(Entity entity, sf::Vector2f p, float d);
 		void movePoint(Entity entity, sf::Vector2f p, float d);
 		void setVisibleBoundBox(Entity entity, bool state);
-		void collideAABB(Entity e1, Entity e2);
+		bool collide(Entity e1, Entity e2);
+		bool collideSAT(const Shape& s1, const Shape& s2);
 		Entity createShape();
 		void createShape(Entity e);
 		void move(Entity e, sf::Vector2f mv);

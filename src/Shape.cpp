@@ -77,5 +77,25 @@ namespace klf
 		s->move(mv);
 	}
 
+	bool ShapesHandler::collide(Entity e1, Entity e2)
+	{
+		ComponentMask mask1 = System::getComponentMask(e1);
+		ComponentMask mask2 = System::getComponentMask(e2);
+		if ((mask1 & SHAPE)!=0 && (mask2 & SHAPE)!=0) // We can use SAT method
+		{
+			Shape& s1 = dynamic_cast<Shape&>(System::getComponent(SHAPE, e1).getValue());
+			Shape& s2 = dynamic_cast<Shape&>(System::getComponent(SHAPE, e2).getValue());
+			return ShapesHandler::collideSAT(s1, s2);
+		}
+		else
+		{
+			std::cerr << "Don't know how to test collide..." << std::endl;
+		}
+	}
+
+	bool ShapesHandler::collideSAT(const Shape& s1, const Shape& s2)
+	{
+		return false;
+	}
 
 }
