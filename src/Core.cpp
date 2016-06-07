@@ -54,6 +54,7 @@ namespace klf
 		if (m_freeEntityId.empty())
 		{
 			i = m_greaterEntity;
+			m_greaterEntity ++;
 		}
 		else
 		{
