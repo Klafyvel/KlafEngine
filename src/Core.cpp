@@ -7,12 +7,16 @@
  */
 namespace klf
 {
-	Component& System::getComponent(const ComponentMask mask, const unsigned int entity)
+	Component& System::getComponent(const ComponentMask mask, const Entity entity) const
 	{
 		unsigned int component_id = componentMaskToInt(mask);
 		return *(m_application.m_components[component_id][entity]);
 	}
-	std::unordered_map<unsigned int, ComponentMask>& System::getActiveEntities()
+	ComponentMask System::getComponentMask(const Entity entity) const
+	{
+		return m_application.m_entities[entity];
+	}
+	std::unordered_map<unsigned int, ComponentMask>& System::getActiveEntities() const
 	{
 		return m_application.m_activeEntities;
 	}

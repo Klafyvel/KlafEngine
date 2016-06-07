@@ -93,10 +93,15 @@ namespace klf
 		 * @param mask The component's mask.
 		 * @param entity The entity.
 		 */
-		Component& getComponent(const ComponentMask mask, const unsigned int entity);
+		Component& getComponent(const ComponentMask mask, const Entity entity) const;
+		/** @brief Acces to the entity's mask.
+		 * @param entity The entity which is to be accessed.
+		 * @return A copy of the ComponentMask.
+		 */
+		ComponentMask getComponentMask(const Entity entity) const;
 		/** @brief Access to the active entities.
 		 */
-		std::unordered_map<unsigned int, ComponentMask>& getActiveEntities();
+		std::unordered_map<unsigned int, ComponentMask>& getActiveEntities() const;
 
 		Application& m_application;/** System owner.*/
 		unsigned int m_appId;/** System id for the application. */
