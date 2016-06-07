@@ -79,6 +79,7 @@ namespace klf
 	void Application::addMask(const unsigned int entityId, const ComponentMask mask)
 	{
 		m_activeEntities[entityId] |= mask;
+		m_entities[entityId] |= mask;
 		unsigned int componentId = componentMaskToInt(mask);
 		if(m_components.find(componentId) == m_components.end())
 		{
