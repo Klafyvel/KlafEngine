@@ -29,7 +29,7 @@ namespace klf
 	class Renderer : public System
 	{
 	public:
-		Renderer(Application& app): System(app) {}
+		Renderer(Application& app, unsigned int id): System(app, id) {}
 
 		void render(sf::RenderTarget& target);
 	};
