@@ -23,7 +23,7 @@ std::unique_ptr<klf::Component> factory(unsigned int e)
 class MySystem : public klf::System
 {
 public:
-	MySystem(klf::Application& app) : klf::System(app) {}
+	MySystem(klf::Application& app, unsigned int id) : klf::System(app, id) {}
 	void onUpdate()
 	{
 		std::cout << "Update ! " << std::endl;
@@ -91,7 +91,7 @@ int main()
 
 	std::cout << "Let's create a system and update it !" << std::endl;
 
-	MySystem s(app);
+	MySystem s(app, 0);
 	s.onUpdate();
 	s.onUpdate();
 
