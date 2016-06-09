@@ -37,20 +37,25 @@ namespace klf
 		/** @brief Compute the normalized vector.
 		 * @return Normalized vector.
 		 */
-		Vector2 norm();
+		Vector2 norm() const;
 		/** @brief Compute vector's magnitude.
 		 * @return Magnitude.
 		 */
-		float mag();
+		float mag() const;
 		/** @brief Compute angle between vector and (1,0).
 		 * @return angle
 		 */
-		float ang();
+		float ang() const;
 		/** @brief Compute an orthogonal vector.
 		 * This is more precise than rotating M_PI*2.
 		 * @return orthogonal vector.
 		 */
-		Vector2 orthogonal();
+		Vector2 orthogonal() const;
+
+		/** @brief Compute an orthogonal vector.
+		 * @return orthogonal vector.
+		 */
+		static Vector2 orthogonal(const Vector2& v) { return v.orthogonal(); }
 
 		/** Convert Vector2 to SFML Vector2f.
 		 * @return SFML Vector2f

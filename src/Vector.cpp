@@ -2,22 +2,22 @@
 
 namespace klf
 {
-	Vector2 Vector2::norm()
+	Vector2 Vector2::norm() const
 	{
 		return *this / mag();
 	}
 
-	float Vector2::mag()
+	float Vector2::mag() const
 	{
 		return std::sqrt(std::pow(x, 2) + std::pow(y, 2));
 	}
 
-	float Vector2::ang()
+	float Vector2::ang() const
 	{
 		return atan2(x, y);
 	}
 
-	Vector2 Vector2::orthogonal()
+	Vector2 Vector2::orthogonal() const
 	{
 		return Vector2(-y, x);
 	}
