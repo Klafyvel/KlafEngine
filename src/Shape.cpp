@@ -95,7 +95,28 @@ namespace klf
 
 	bool ShapesHandler::collideSAT(const Shape& s1, const Shape& s2)
 	{
-		return false;
+		int sizeS1 = s1.vertices.getVertexCount();
+		int sizeS2 = s2.vertices.getVertexCount();
+		if(sizeS1 <= 1 || sizeS2 <= 1)
+			return false;
+		Vector2 p(0,0);
+		float beginS1 = 0, endS1 = 0, beginS2 = 0, endS2 = 0;
+		for(int i : range(1,sizeS1))
+		{
+			p = Vector2::orthogonal(s1.vertices[i].position - s1.vertices[i-1].position).norm();
+			beginS1 = p * s1.vertices[i-1].position;
+			endS1 = p * s1.vertices[i].position;
+
+			for(int j : range(1, sizeS2))
+			{
+				beginS2 = p * s2.vertices[j-1].position;
+				endS2 = p * s2.vertices[j].position;
+				if(intersect(beginS1, endS1, beginS1, endS2) == 0)
+					return false;
+			}
+
+		}
+		return true;
 	}
 
 }

@@ -15,6 +15,7 @@
 #include <KlafEngine/Core.hpp>
 #include <KlafEngine/ComponentsMask.hpp>
 #include <KlafEngine/Vector.hpp>
+#include <KlafEngine/Utils.hpp>
 
 /**
  * @namespace klf
