@@ -1,6 +1,7 @@
 <map id="/home/klafyvel/dev/KlafEngine/include/KlafEngine/Renderer.hpp" name="/home/klafyvel/dev/KlafEngine/include/KlafEngine/Renderer.hpp">
-<area shape="rect" id="node5" href="$_core_8hpp.html" title="KlafEngine&#39;s core. " alt="" coords="590,259,733,285"/>
+<area shape="rect" id="node5" href="$_core_8hpp.html" title="KlafEngine&#39;s core. " alt="" coords="557,259,699,285"/>
 <area shape="rect" id="node13" href="$_components_mask_8hpp.html" title="Contain every component bit mask. " alt="" coords="930,333,1150,360"/>
-<area shape="rect" id="node15" href="$_shape_8hpp.html" title="Everything to draw a shape. " alt="" coords="699,109,850,136"/>
-<area shape="rect" id="node16" href="$_vector_8hpp_source.html" title="KlafEngine/Vector.hpp" alt="" coords="315,184,467,211"/>
+<area shape="rect" id="node15" href="$_shape_8hpp.html" title="Everything to draw a shape. " alt="" coords="441,109,591,136"/>
+<area shape="rect" id="node16" href="$_vector_8hpp_source.html" title="KlafEngine/Vector.hpp" alt="" coords="328,184,480,211"/>
+<area shape="rect" id="node17" href="$_utils_8hpp.html" title="Utilities for KlafEngine. " alt="" coords="163,184,304,211"/>
 </map>

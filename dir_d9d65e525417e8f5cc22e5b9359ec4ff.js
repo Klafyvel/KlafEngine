@@ -10,5 +10,6 @@ var dir_d9d65e525417e8f5cc22e5b9359ec4ff =
       [ "Shape", "classklf_1_1_shape.html", "classklf_1_1_shape" ],
       [ "ShapesHandler", "classklf_1_1_shapes_handler.html", "classklf_1_1_shapes_handler" ]
     ] ],
+    [ "Utils.hpp", "_utils_8hpp.html", "_utils_8hpp" ],
     [ "Vector.hpp", "_vector_8hpp_source.html", null ]
 ];

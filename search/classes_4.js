@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['shape',['Shape',['../classklf_1_1_shape.html',1,'klf']]],
-  ['shapeshandler',['ShapesHandler',['../classklf_1_1_shapes_handler.html',1,'klf']]],
-  ['system',['System',['../classklf_1_1_system.html',1,'klf']]]
+  ['range',['range',['../classklf_1_1range.html',1,'klf']]],
+  ['renderer',['Renderer',['../classklf_1_1_renderer.html',1,'klf']]]
 ];

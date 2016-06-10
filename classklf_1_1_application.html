@@ -126,9 +126,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#af7dfaee69598f264b5e99d333edd8c92">Application</a> ()</td></tr>
 <tr class="memdesc:af7dfaee69598f264b5e99d333edd8c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
 <tr class="separator:af7dfaee69598f264b5e99d333edd8c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac631dc712c0951fbcb6b83ff78a7bb23"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#ac631dc712c0951fbcb6b83ff78a7bb23">addSystem</a> (<a class="el" href="namespaceklf.html#a5d9d7d06fd11f78ea4c8cee4ce8b6b92">SystemFactory</a> systemFactory)</td></tr>
-<tr class="memdesc:ac631dc712c0951fbcb6b83ff78a7bb23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a system to the application.  <a href="#ac631dc712c0951fbcb6b83ff78a7bb23">More...</a><br /></td></tr>
-<tr class="separator:ac631dc712c0951fbcb6b83ff78a7bb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a644d1d7a26a80c8fead700246b465366"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a644d1d7a26a80c8fead700246b465366">addSystem</a> (<a class="el" href="classklf_1_1_system.html">System</a> *s)</td></tr>
+<tr class="memdesc:a644d1d7a26a80c8fead700246b465366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a system to the application.  <a href="#a644d1d7a26a80c8fead700246b465366">More...</a><br /></td></tr>
+<tr class="separator:a644d1d7a26a80c8fead700246b465366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd92c80d77ea544c6985324956f165eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#abd92c80d77ea544c6985324956f165eb">removeSystem</a> (unsigned int id)</td></tr>
 <tr class="memdesc:abd92c80d77ea544c6985324956f165eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a system from the application by id.  <a href="#abd92c80d77ea544c6985324956f165eb">More...</a><br /></td></tr>
 <tr class="separator:abd92c80d77ea544c6985324956f165eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,6 +193,9 @@ std::unordered_map&lt; unsigned int, std::unique_ptr&lt; <a class="el" href="cla
 <tr class="separator:a315f706056a48b5c7e9136fcb84beec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07e15e3b1d4c821cf839d19c568c19e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceklf.html#a567d0c0f8ae7d7fb2abfd4709bf45e5b">Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classklf_1_1_application.html#a07e15e3b1d4c821cf839d19c568c19e7">m_greaterEntity</a></td></tr>
 <tr class="separator:a07e15e3b1d4c821cf839d19c568c19e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf0e0762acc2fe50c04b9a493f947990"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf0e0762acc2fe50c04b9a493f947990"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>m_greaterSystem</b></td></tr>
+<tr class="separator:adf0e0762acc2fe50c04b9a493f947990"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -280,15 +283,15 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>System</b></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac631dc712c0951fbcb6b83ff78a7bb23"></a>
+<a class="anchor" id="a644d1d7a26a80c8fead700246b465366"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">unsigned int klf::Application::addSystem </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceklf.html#a5d9d7d06fd11f78ea4c8cee4ce8b6b92">SystemFactory</a>&#160;</td>
-          <td class="paramname"><em>systemFactory</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classklf_1_1_system.html">System</a> *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

@@ -10,7 +10,9 @@ var hierarchy =
     [ "Drawable", null, [
       [ "klf::Shape", "classklf_1_1_shape.html", null ]
     ] ],
+    [ "klf::range::iterator", "classklf_1_1range_1_1iterator.html", null ],
     [ "klf::Material", "classklf_1_1_material.html", null ],
+    [ "klf::range", "classklf_1_1range.html", null ],
     [ "klf::System", "classklf_1_1_system.html", [
       [ "klf::Renderer", "classklf_1_1_renderer.html", null ],
       [ "klf::ShapesHandler", "classklf_1_1_shapes_handler.html", null ]

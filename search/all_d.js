@@ -6,6 +6,5 @@ var searchData=
   ['shape_2ehpp',['Shape.hpp',['../_shape_8hpp.html',1,'']]],
   ['shapeshandler',['ShapesHandler',['../classklf_1_1_shapes_handler.html',1,'klf']]],
   ['system',['System',['../classklf_1_1_system.html#a3b0f01dba4d2980689d6b6b401e922e0',1,'klf::System']]],
-  ['system',['System',['../classklf_1_1_system.html',1,'klf']]],
-  ['systemfactory',['SystemFactory',['../namespaceklf.html#a5d9d7d06fd11f78ea4c8cee4ce8b6b92',1,'klf']]]
+  ['system',['System',['../classklf_1_1_system.html',1,'klf']]]
 ];
