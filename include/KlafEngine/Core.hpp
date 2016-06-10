@@ -90,12 +90,14 @@ namespace klf
 	 */
 	class System
 	{
+	friend class Application;
 	public:
 		/** @brief Constructor.
 		 * @param application A reference to the system owner.
 		 */
 		System(Application &application, unsigned int id) : m_application(application), m_appId(id){}
 		virtual void update() {}
+
 	protected:
 		/** @brief Access to the entity's component. May not be overrided
 		 * @param mask The component's mask.
@@ -110,14 +112,17 @@ namespace klf
 		/** @brief Access to the active entities.
 		 */
 		std::unordered_map<unsigned int, ComponentMask>& getActiveEntities() const;
+		/** @brief Cause a System with the given id to be launched at the next update.
+		 * @param id The system id.
+		 */
+		void runOnNextUpdate(unsigned int id) const;
+		/** @brief Cause this System to be launched at the next update.
+		 */
+		void runOnNextUpdate() const;
 
 		Application& m_application;/** System owner.*/
 		unsigned int m_appId;/** System id for the application. */
 	};
-
-	/** @brief Typedef for system factories.
-	 */
-	typedef std::function<std::unique_ptr<System>(void)> SystemFactory;
 
 	/** @class Application
 	 * @brief Handle every system, components and entities.
@@ -128,13 +133,13 @@ namespace klf
 	public:
 		/** @brief Constructor
 		 */
-		Application() : m_greaterEntity(0) {}
+		Application() : m_greaterEntity(0), m_greaterSystem(0) {}
 
 		/** @brief Add a system to the application
 		 * @param systemFactory A SystemFactory to build the system.
 		 * @return The system id.
 		 */
-		unsigned int addSystem(SystemFactory systemFactory);
+		unsigned int addSystem(System* s);
 		/** @brief Remove a system from the application by id.
 		 * @param id System id.
 		 */
@@ -203,6 +208,7 @@ namespace klf
 		std::queue<Entity> m_freeEntityId; /** Free entities id. */
 		std::deque<unsigned int> m_systemProcessing; /** Systems on wich the update method will be called. */
 		Entity m_greaterEntity;
+		unsigned int m_greaterSystem;
 
 	};
 

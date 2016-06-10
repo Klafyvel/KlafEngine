@@ -20,6 +20,14 @@ namespace klf
 	{
 		return m_application.m_activeEntities;
 	}
+	void System::runOnNextUpdate(unsigned int id) const
+	{
+		m_application.m_systemProcessing.push_back(id);
+	}
+	void System::runOnNextUpdate() const
+	{
+		m_application.m_systemProcessing.push_back(m_appId);
+	}
 
 	void Application::removeSystem(unsigned int id)
 	{
@@ -27,16 +35,13 @@ namespace klf
 		m_freeSystemId.push(id);
 	}
 
-	unsigned int Application::addSystem(SystemFactory systemFactory)
+	unsigned int Application::addSystem(System* s)
 	{
 		unsigned int i = 0;
 		if (m_freeSystemId.empty())
 		{
-			i = m_systems.size();
-			while(m_systems.find(i) != m_systems.end())
-			{
-				i += 1;
-			}
+			i = m_greaterSystem;
+			m_greaterSystem += 1;
 		}
 		else
 		{
@@ -44,7 +49,8 @@ namespace klf
 			m_freeSystemId.pop();
 		}
 
-		m_systems.emplace(i, systemFactory());
+		m_systems.emplace(i, std::unique_ptr<System>(s));
+		s->m_appId = i;
 		return i;
 	}
 
