@@ -77,7 +77,7 @@ namespace klf
 		s->move(mv);
 	}
 
-	bool ShapesHandler::collide(Entity e1, Entity e2)
+	Vector2 ShapesHandler::collide(Entity e1, Entity e2)
 	{
 		ComponentMask mask1 = System::getComponentMask(e1);
 		ComponentMask mask2 = System::getComponentMask(e2);
@@ -91,14 +91,18 @@ namespace klf
 		{
 			std::cerr << "Don't know how to test collide..." << std::endl;
 		}
+		return Vector2(0,0);
 	}
 
-	bool ShapesHandler::collideSAT(const Shape& s1, const Shape& s2)
+	Vector2 ShapesHandler::collideSAT(const Shape& s1, const Shape& s2)
 	{
 		int sizeS1 = s1.vertices.getVertexCount();
 		int sizeS2 = s2.vertices.getVertexCount();
 		if(sizeS1 <= 1 || sizeS2 <= 1)
-			return false;
+			return Vector2(0,0);
+		Vector2 minV(0,0);
+		float minMag = 0;
+		bool minInitialized = false;
 		Vector2 p(0,0);
 		float beginS1 = 0, endS1 = 0, beginS2 = 0, endS2 = 0;
 		for(int i : range(1,sizeS1))
@@ -111,12 +115,29 @@ namespace klf
 			{
 				beginS2 = p * s2.vertices[j-1].position;
 				endS2 = p * s2.vertices[j].position;
-				if(intersect(beginS1, endS1, beginS1, endS2) == 0)
-					return false;
+				float inter = intersect(beginS1, endS1, beginS1, endS2);
+				if (! minInitialized)
+				{
+					minV = p * inter;
+					minMag = minV.mag();
+					minInitialized = true;
+				}
+				else if ( minMag <= inter)
+				{
+					minV = p * inter;
+					minMag = inter;
+				}
 			}
-
 		}
-		return true;
+		return minV;
+	}
+	Vector2 ShapesHandler::collideBoundBox(const Shape& s1, const Shape& s2) const
+	{
+		sf::FloatRect b1 = s1.vertices.getBounds();
+		sf::FloatRect b2 = s2.vertices.getBounds();
+		return Vector2( \
+				intersect(b1.left,b1.left+b1.width, b2.left, b2.left+b2.width),\
+				intersect(b1.top, b1.top+b1.height, b2.top, b2.top+b2.height));
 	}
 
 }
