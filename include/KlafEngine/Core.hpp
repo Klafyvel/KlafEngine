@@ -200,7 +200,7 @@ namespace klf
 
 	protected:
 		std::unordered_map<unsigned int, std::unique_ptr<System>> m_systems; /** Every system of the application.*/
-		std::unordered_map<unsigned int, std::unordered_map<unsigned int,std::unique_ptr<Component>>> m_components; /** Every component rows.*/
+		std::unordered_map<unsigned int, std::unordered_map<Entity,std::unique_ptr<Component>>> m_components; /** Every component rows.*/
 		std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents; /** Registered component (i.e. the factories to build them) */
 		std::unordered_map<unsigned int, ComponentMask> m_entities; /** Every application's entity. */
 		std::unordered_map<unsigned int, ComponentMask> m_activeEntities; /** Every active application's entity. */
