@@ -1,5 +1,7 @@
 #include <KlafEngine/Utils.hpp>
 
+namespace klf
+{
 float intersect(float begin1, float end1, float begin2, float end2)
 {
 	assert(begin1 <= end1);
@@ -14,4 +16,4 @@ float intersect(float begin1, float end1, float begin2, float end2)
 	else
 		return end1 - begin2;
 }
-
+}
