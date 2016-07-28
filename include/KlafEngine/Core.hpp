@@ -31,6 +31,9 @@ namespace klf
 	/**@brief Unsigned int is a very long word !*/
 	typedef unsigned int Entity;
 
+	/**@brief In order to store easily systems. */
+	typedef unsigned int SystemId;
+
 	class Application;
 	class System;
 
@@ -56,7 +59,7 @@ namespace klf
 		/** @brief Constructor.
 		 * @param e The entity which own the component.
 		 */
-		Component(unsigned int e) : entity(e)
+		Component(Entity e) : entity(e)
 		{}
 
 		/** @brief Acces to the value with a Reference.
@@ -71,19 +74,19 @@ namespace klf
 		 * @param entity The entity which own the component.
 		 * @return A std::unique_ptr on the component.
 		 */
-		static std::unique_ptr<Component> createEmptyComponent(unsigned int entity)
+		static std::unique_ptr<Component> createEmptyComponent(Entity entity)
 		{
 			std::unique_ptr<Component> comp(new Component(entity));
 			return comp;
 		}
 
-		unsigned int entity; /** The component's owner.*/
+		Entity entity; /** The component's owner.*/
 		std::shared_ptr<ComponentData> value; /** Use value to store your data struct. */
 	};
 
 	/** @brief Typedef for component factories.
 	 */
-	typedef std::function<std::unique_ptr<Component>(unsigned int)> EmptyComponentFactory;
+	typedef std::function<std::unique_ptr<Component>(Entity)> EmptyComponentFactory;
 
 	/** @class System
 	 * @brief Deal with Component's values.
@@ -95,7 +98,7 @@ namespace klf
 		/** @brief Constructor.
 		 * @param application A reference to the system owner.
 		 */
-		System(Application &application, unsigned int id) : m_application(application), m_appId(id){}
+		System(Application &application, SystemId id) : m_application(application), m_appId(id){}
 		virtual void update() {}
 
 	protected:
@@ -111,17 +114,17 @@ namespace klf
 		ComponentMask getComponentMask(const Entity entity) const;
 		/** @brief Access to the active entities.
 		 */
-		std::unordered_map<unsigned int, ComponentMask>& getActiveEntities() const;
+		std::unordered_map<Entity, ComponentMask>& getActiveEntities() const;
 		/** @brief Cause a System with the given id to be launched at the next update.
 		 * @param id The system id.
 		 */
-		void runOnNextUpdate(unsigned int id) const;
+		void runOnNextUpdate(SystemId id) const;
 		/** @brief Cause this System to be launched at the next update.
 		 */
 		void runOnNextUpdate() const;
 
 		Application& m_application;/** System owner.*/
-		unsigned int m_appId;/** System id for the application. */
+		SystemId m_appId;/** System id for the application. */
 	};
 
 	/** @class Application
@@ -143,38 +146,38 @@ namespace klf
 		/** @brief Remove a system from the application by id.
 		 * @param id System id.
 		 */
-		void removeSystem(unsigned int id);
+		void removeSystem(SystemId id);
 		/** @brief Cause a system to be updated at the next update.
 		 * @param id System id.
 		 */
-		void pushUpdate(unsigned int id);
+		void pushUpdate(SystemId id);
 
 		/** @brief Add an entity to the system.
 		 * @return The entity id.
 		 */
-		unsigned int addEntity();
+		Entity addEntity();
 		/** @brief Make an entity active.
 		 */
-		void makeActive(unsigned int entity);
+		void makeActive(Entity entity);
 		/** @brief Make an entity unactive.
 		 */
-		void makeUnactive(unsigned int entity);
+		void makeUnactive(Entity entity);
 		/** @brief Add a mask on the given entity.
 		 * The entity must be active.
 		 * @param entityId The entity id.
 		 * @param mask The mask which is to be applied.
 		 */
-		void addMask(const unsigned int entityId, const ComponentMask mask);
+		void addMask(const Entity entityId, const ComponentMask mask);
 		/** @brief Remove the mask on the given entity.
 		 * The entity must be active.
 		 * @param entityId The entity id.
 		 * @param mask The mask which is to be applied.
 		 */
-		void removeMask(const unsigned int entityId, const ComponentMask mask);
+		void removeMask(const Entity entityId, const ComponentMask mask);
 		/** @brief Remove the entity from the application.
 		 * @param id The entity which is to be removed.
 		 */
-		void removeEntity(const unsigned int id);
+		void removeEntity(const Entity id);
 
 		/** @brief Register a component type.
 		 * @param mask The mask of the new component.
@@ -199,16 +202,16 @@ namespace klf
 
 
 	protected:
-		std::unordered_map<unsigned int, std::unique_ptr<System>> m_systems; /** Every system of the application.*/
+		std::unordered_map<SystemId, std::unique_ptr<System>> m_systems; /** Every system of the application.*/
 		std::unordered_map<unsigned int, std::unordered_map<Entity,std::unique_ptr<Component>>> m_components; /** Every component rows.*/
 		std::unordered_map<unsigned int, EmptyComponentFactory> m_registeredComponents; /** Registered component (i.e. the factories to build them) */
-		std::unordered_map<unsigned int, ComponentMask> m_entities; /** Every application's entity. */
-		std::unordered_map<unsigned int, ComponentMask> m_activeEntities; /** Every active application's entity. */
-		std::queue<unsigned int> m_freeSystemId; /** Free systems ids. */
+		std::unordered_map<Entity, ComponentMask> m_entities; /** Every application's entity. */
+		std::unordered_map<Entity, ComponentMask> m_activeEntities; /** Every active application's entity. */
+		std::queue<SystemId> m_freeSystemId; /** Free systems ids. */
 		std::queue<Entity> m_freeEntityId; /** Free entities id. */
-		std::deque<unsigned int> m_systemProcessing; /** Systems on wich the update method will be called. */
+		std::deque<SystemId> m_systemProcessing; /** Systems on wich the update method will be called. */
 		Entity m_greaterEntity;
-		unsigned int m_greaterSystem;
+		SystemId m_greaterSystem;
 
 	};
 
