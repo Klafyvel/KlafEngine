@@ -23,12 +23,30 @@ namespace klf
 	public:
 		/** @brief PhysicData constructor.
 		 */
-		PhysicData();
+		PhysicData() {}
 
-		MassData mass;
-		Material material;
-		Vector2 pos;
-		Shape shape;
+		/** @brief PhysicData Component factory
+		 * @param e entity
+		 */
+		static std::unique_ptr<Component> factory(Entity e);
+
+		MassData mass; /** Object's mass */
+		Material material; /** Object's composition. */
+		Vector2 pos; /** Object's position in the physics coordinate system. */
+		Shape shape; /** Object's shape (used fo collision). */
+	};
+
+	class PhysicHandler : public System
+	{
+	public:
+		PhysicHandler(Application& application, unsigned int id, float dt=0.0) ;
+		void attachShapeHandler(unsigned int id);
+		void update();
+	private:
+		unsigned int m_shapeHandlerId;
+		bool m_fixedTime;
+		float m_dt;
+		sf::Clock m_clock;
 	};
 
 }
