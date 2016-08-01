@@ -70,11 +70,12 @@ namespace klf
 		m_application.addMask(e, SHAPE);
 	}
 
-	void ShapesHandler::move(Entity e, sf::Vector2f mv)
+	void ShapesHandler::move(Entity e, Vector2 mv)
 	{
 		Component& c = getComponent(SHAPE, e);
 		std::shared_ptr<Shape> s = std::dynamic_pointer_cast<Shape>(c.value);
-		s->move(mv);
+		for (int i : range(0,s->vertices.getVertexCount()))
+			s->vertices[i].position += mv.toSFML();
 	}
 
 	Vector2 ShapesHandler::collide(Entity e1, Entity e2)
@@ -116,6 +117,7 @@ namespace klf
 				beginS2 = p * s2.vertices[j-1].position;
 				endS2 = p * s2.vertices[j].position;
 				float inter = intersect(beginS1, endS1, beginS1, endS2);
+				std::cout << "COLLIDER : inter =" << inter << std::endl;
 				if (! minInitialized)
 				{
 					minV = p * inter;
@@ -128,6 +130,7 @@ namespace klf
 					minMag = inter;
 				}
 			}
+			std::cout << "COLLIDER : minV =" << minV << std::endl;
 		}
 		return minV;
 	}
