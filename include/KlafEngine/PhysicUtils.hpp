@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <KlafEngine/Core.hpp>
+#include <KlafEngine/Vector.hpp>
 
 /**
  * @namespace klf

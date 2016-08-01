@@ -33,15 +33,30 @@ namespace klf
 		MassData mass; /** Object's mass */
 		Material material; /** Object's composition. */
 		Vector2 pos; /** Object's position in the physics coordinate system. */
+		Vector2 speed; /** Object's speed. */
 		Shape shape; /** Object's shape (used fo collision). */
 	};
 
 	class PhysicHandler : public System
 	{
 	public:
-		PhysicHandler(Application& application, unsigned int id, float dt=0.0) ;
+		/** @brief Constructor
+		 * @param application Param for mother class System
+		 * @param id Param for mother class System
+		 * @param dt time elapsed between each update. If dt=0.0, a clock will be used. default is 0.0.
+		 */
+		PhysicHandler(Application& application, unsigned int id, float dt=0.0);
+		/** @brief Specify the ShapeHandler's id.
+		 * @param id
+		 */
 		void attachShapeHandler(unsigned int id);
+		/** @brief Update every physic component.
+		 * It assumes that the shape handler has been runned BEFORE.
+		 */
 		void update();
+		/** @brief Handle collision between objects.
+		 */
+		void collider();
 	private:
 		unsigned int m_shapeHandlerId;
 		bool m_fixedTime;

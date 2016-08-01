@@ -17,4 +17,10 @@ namespace klf
 		m_shapeHandlerId = 0;
 	}
 
+	void PhysicHandler::attachShapeHandler(unsigned int id)
+	{
+		m_shapeHandlerId = id;
+	}
+
+
 }
