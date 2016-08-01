@@ -32,9 +32,16 @@ int main()
 	bool moving = false;
 
 	bool currentShapeIs1 = true;
+	klf::Entity* current = &e1;
+
+	bool testCollision = false;
 
 	while (window.isOpen())
 	{
+		if (currentShapeIs1)
+			current = &e1;
+		else
+			current = &e2;
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -43,9 +50,18 @@ int main()
 			else if (event.type == sf::Event::MouseButtonReleased)
 			{
 				if(!moving && event.mouseButton.button == sf::Mouse::Right)
-					s.removePoint(e1, sf::Vector2f(event.mouseButton.x, event.mouseButton.y), 30);
+					s.removePoint(*current, sf::Vector2f(event.mouseButton.x, event.mouseButton.y), 30);
 				else
-					s.addPoint(e1, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
+					s.addPoint(*current, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
+			}
+			else if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::A)
+				{
+					currentShapeIs1 = !currentShapeIs1;
+				}
+				else if (event.key.code == sf::Keyboard::Z)
+					testCollision = !testCollision;
 			}
 		}
 
@@ -53,16 +69,16 @@ int main()
 		{
 			sf::Vector2i i = sf::Mouse::getPosition(window);
 			sf::Vector2f p(i.x,i.y);
-			s.movePoint(e1, p, 20);
+			s.movePoint(*current, p, 20);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-			s.move(e1, sf::Vector2f(-1,0));
+			s.move(*current, sf::Vector2f(-1,0));
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-			s.move(e1, sf::Vector2f(1,0));
+			s.move(*current, sf::Vector2f(1,0));
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			s.move(e1, sf::Vector2f(0,-1));
+			s.move(*current, sf::Vector2f(0,-1));
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			s.move(e1, sf::Vector2f(0,1));
+			s.move(*current, sf::Vector2f(0,1));
 
 
 		sum += 1.f / clock.getElapsedTime().asSeconds();
@@ -71,6 +87,12 @@ int main()
 		std::ostringstream ss;
 		ss << sum / n_iter;
 		window.setTitle("FPS : " + ss.str());
+
+		if (testCollision)
+		{
+			testCollision = false;
+			std::cout << s.collide(e1, e2) << std::endl;
+		}
 
 		if(n_iter > 1000)
 		{
