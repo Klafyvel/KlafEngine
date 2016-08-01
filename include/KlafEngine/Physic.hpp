@@ -53,7 +53,7 @@ namespace klf
 		/** @brief Update every physic component.
 		 * It assumes that the shape handler has been runned BEFORE.
 		 */
-		void update();
+		void update() {};
 		/** @brief Handle collision between objects.
 		 */
 		void collider();

@@ -28,7 +28,7 @@ namespace klf
 		 * @param x x value
 		 * @param y y value
 		 */
-		Vector2(float x, float y) : x(x), y(y) {}
+		Vector2(float x=0, float y=0) : x(x), y(y) {}
 		/** Copy constructor
 		 * @param v Vector to be copied.
 		 */

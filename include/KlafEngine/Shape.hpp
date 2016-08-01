@@ -33,7 +33,7 @@ namespace klf
 		/** @brief Constructor.
 		 * @param count Count of vertices.
 		 */
-		Shape(int count) :
+		Shape(int count=0) :
 			ComponentData(),
 			sf::Transformable(),
 			sf::Drawable(),
@@ -95,7 +95,7 @@ namespace klf
 		Vector2 collideBoundBox(const Shape& s1, const Shape& s2) const;
 		Entity createShape();
 		void createShape(Entity e);
-		void move(Entity e, sf::Vector2f mv);
+		void move(Entity e, Vector2 mv);
 	};
 }
 

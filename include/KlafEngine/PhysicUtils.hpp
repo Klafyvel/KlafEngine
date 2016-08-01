@@ -69,7 +69,7 @@ namespace klf
 		 * @param density Material's density.
 		 * @param restitution Material's resitution.
 		 */
-		Material(float density, float restitution) :
+		Material(float density=0, float restitution=0) :
 			density(density), restitution(restitution)
 		{}
 		const float density; /**Material's density.*/
