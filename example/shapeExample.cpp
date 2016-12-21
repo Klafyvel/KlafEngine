@@ -91,7 +91,9 @@ int main()
 		if (testCollision)
 		{
 			testCollision = false;
-			std::cout << s.collide(e1, e2) << std::endl;
+			auto v = s.collide(e1, e2);
+			std::cout << v << std::endl;
+
 		}
 
 		if(n_iter > 1000)
@@ -107,7 +109,4 @@ int main()
 
 	return EXIT_SUCCESS;
 }
-
-
-
 

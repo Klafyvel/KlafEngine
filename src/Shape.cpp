@@ -103,34 +103,48 @@ namespace klf
 			return Vector2(0,0);
 		Vector2 minV(0,0);
 		float minMag = 0;
-		bool minInitialized = false;
-		Vector2 p(0,0);
-		float beginS1 = 0, endS1 = 0, beginS2 = 0, endS2 = 0;
-		for(int i : range(1,sizeS1))
+		bool colliding = true;
+		for (int i : range(0,sizeS1))
 		{
-			p = Vector2::orthogonal(s1.vertices[i].position - s1.vertices[i-1].position).norm();
-			beginS1 = p * s1.vertices[i-1].position;
-			endS1 = p * s1.vertices[i].position;
-
-			for(int j : range(1, sizeS2))
+			if (!colliding)
+				break;
+			Vector2 axis = (Vector2(s1.vertices[(i+1)%sizeS1].position) \
+				- Vector2(s1.vertices[i].position)).orthogonal();
+			Vector2 p1 = ShapesHandler::projectOrthogonally(s1,axis);
+			Vector2 p2 = ShapesHandler::projectOrthogonally(s2,axis);
+			float inter = intersect(p1.x,p1.y, p2.x, p2.y);
+			if(i==0 || (colliding && inter > 0 && inter < minMag))
 			{
-				beginS2 = p * s2.vertices[j-1].position;
-				endS2 = p * s2.vertices[j].position;
-				float inter = intersect(beginS1, endS1, beginS1, endS2);
-				std::cout << "COLLIDER : inter =" << inter << std::endl;
-				if (! minInitialized)
-				{
-					minV = p * inter;
-					minMag = minV.mag();
-					minInitialized = true;
-				}
-				else if ( minMag <= inter)
-				{
-					minV = p * inter;
-					minMag = inter;
-				}
+				minV = axis.norm() * inter;
+				minMag = inter;
 			}
-			std::cout << "COLLIDER : minV =" << minV << std::endl;
+			else if (inter <= 0)
+			{
+				colliding = false;
+				minV = Vector2(0,0);
+				minMag = 0;
+			}
+		}
+		for (int i : range(0,sizeS2))
+		{
+			if (!colliding)
+				break;
+			Vector2 axis = (Vector2(s2.vertices[(i+1)%sizeS2].position) \
+				- Vector2(s2.vertices[i].position)).orthogonal();
+			Vector2 p1 = ShapesHandler::projectOrthogonally(s1,axis);
+			Vector2 p2 = ShapesHandler::projectOrthogonally(s2,axis);
+			float inter = intersect(p1.x,p1.y, p2.x, p2.y);
+			if(colliding && inter > 0 && inter < minMag)
+			{
+				minV = axis.norm() * inter;
+				minMag = inter;
+			}
+			else if (inter <= 0)
+			{
+				colliding = false;
+				minV = Vector2(0,0);
+				minMag = 0;
+			}
 		}
 		return minV;
 	}
@@ -141,6 +155,22 @@ namespace klf
 		return Vector2( \
 				intersect(b1.left,b1.left+b1.width, b2.left, b2.left+b2.width),\
 				intersect(b1.top, b1.top+b1.height, b2.top, b2.top+b2.height));
+	}
+	Vector2 ShapesHandler::projectOrthogonally(const Shape& s, Vector2 axis)
+	{
+		Vector2 dir = axis.norm();
+		int size = s.vertices.getVertexCount();
+		Vector2 ret;
+		for(int i : range(0,size))
+		{
+			Vector2 p(s.vertices[i].position);
+			float v = p*dir;
+			if (i==0)
+				ret = Vector2(v,v);
+			else
+				ret = Vector2(std::min(ret.x,v), std::max(ret.y,v));
+		}
+		return ret;
 	}
 
 }

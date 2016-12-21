@@ -9,6 +9,7 @@
 
 #include <memory>
 #include <vector>
+#include <algorithm>
 
 #include <SFML/Graphics.hpp>
 
@@ -39,7 +40,8 @@ namespace klf
 			sf::Drawable(),
 			vertices(sf::LinesStrip, count),
 			sum(0,0),
-			color(sf::Color::White)
+			color(sf::Color::White),
+			drawBoundBox(true)
 		{}
 		/** @brief SFML binding to draw the shape.
 		 * @param target The target.
@@ -62,7 +64,9 @@ namespace klf
 		}
 		sf::VertexArray vertices; /** Shape's vertices. */
 		Vector2 sum; /** Sum of the Shape's vertices. */
+		Vector2 origin; /** Shape's origin. */
 		sf::Color color; /** Shape's color. */
+		bool drawBoundBox;
 
 	};
 
@@ -96,6 +100,14 @@ namespace klf
 		Entity createShape();
 		void createShape(Entity e);
 		void move(Entity e, Vector2 mv);
+
+		/** @brief Projects orthogonally the given shape onto an axis.
+		 * @param s The shape.
+		 * @param axis A vector which represents the axis.
+		 * @return Vector2(a,b) with a the minimal distance (signed) between 0 and the 
+		 * projection and b the maximal distance (signed) between 0 and the projection.
+		 */
+		Vector2 projectOrthogonally(const Shape& s, Vector2 axis);
 	};
 }
 
